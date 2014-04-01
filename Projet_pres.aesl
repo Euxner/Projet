@@ -1,0 +1,304 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+<constant value="200" name="MOTOR"/>
+<constant value="200" name="TROU"/>
+<constant value="750" name="SEUIL"/>
+<constant value="25" name="TIMER0"/>
+<constant value="1000" name="TIMER1"/>
+<constant value="2000" name="PROXH"/>
+<constant value="3500" name="PROXHT"/>
+<constant value="10" name="LEDRECULE"/>
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II"># Thymio II : How fast is Thymio
+# Projet par N.Mojon
+# declaration des constante
+# MOTOR puissance du moteur
+# SEUIL	Seuil quand thymio detect le tape
+
+
+var state = 0		#0 = off, 1 = initiate , 2 = recherche ,3 = trou, 4 = trouver, 8 = perdu, 9 = stop
+var RBeviteN = 0	# si = 1 par sur du blanc evite le noir
+var LNeviteB = 0	# si = 1 par sur du noir evite le blanc
+var compteur = 0	# premier compteur
+var compteur2 = 0	# Deuxième compteur
+var compteur3 = 0	# Troisième compteur
+var compteur4 = 0	# Quatrième compteur
+var compteur5 = 0 	# Cinquième compteur
+var limite = 0		# Compteur temps limite exploration
+call sound.system(-1) # Coupe les sons systèmes
+call leds.temperature(0,0) # Coupe la led temperature
+
+###########################################################################################################################
+sub intitiate
+timer.period[0] = TIMER0
+timer.period[1] = TIMER1
+state = 2
+if  RBeviteN == 1 then 
+	LNeviteB = 0
+end
+
+if  LNeviteB == 1 then
+		RBeviteN = 0
+end
+
+call leds.circle(0,0,0,0,0,0,0,0)
+call leds.top(32,32,32)
+ 
+################################################################
+
+sub chercher
+	
+		motor.left.target = MOTOR 
+		motor.right.target = MOTOR  
+		
+	if RBeviteN == 1	then
+		if prox.ground.delta[0] &lt;TROU or prox.ground.delta[1] &lt; TROU then
+		
+			state = 3
+						
+		elseif prox.ground.delta[0] &lt; SEUIL or prox.ground.delta[1] &lt; SEUIL then
+		
+			state = 3
+	end
+	end
+	
+	if LNeviteB == 1	then
+		if prox.ground.delta[0] &lt;TROU or prox.ground.delta[1] &lt; TROU then
+		
+			state = 3
+			
+		elseif prox.ground.delta[0] > SEUIL or prox.ground.delta[1] > SEUIL then
+		
+			state = 3
+		end
+	end
+	
+	if prox.horizontal[4] > PROXHT and prox.horizontal[0] > PROXHT then
+	
+		state = 3
+		
+	elseif prox.horizontal[3] > PROXH and prox.horizontal[4] > PROXH and prox.horizontal[0] > PROXH and  prox.horizontal[1] > PROXH then
+	
+		state = 3
+		
+	elseif  prox.horizontal[2] > PROXH then
+	
+
+		state = 4
+
+	elseif  prox.horizontal[3] > PROXH and prox.horizontal[4] > PROXH then
+	
+			motor.left.target = -MOTOR
+			motor.right.target = MOTOR
+			
+	elseif prox.horizontal[0] > PROXH and  prox.horizontal[1] > PROXH  then
+	
+			motor.left.target = MOTOR
+			motor.right.target = -MOTOR
+
+	elseif  prox.horizontal[4] > PROXHT then
+	
+			motor.left.target = -MOTOR
+			motor.right.target = MOTOR
+			
+	elseif  prox.horizontal[0] > PROXHT then
+	
+			motor.left.target = MOTOR
+			motor.right.target = -MOTOR
+	end
+##################################################################
+sub trou1
+	
+	if  prox.horizontal[5] > 2500 or prox.horizontal[5] > 2500 then
+		
+		motor.left.target = MOTOR 
+		motor.right.target = -MOTOR
+		
+	elseif prox.horizontal[2] > PROXH then
+	
+		state = 4
+	
+	else
+	
+		motor.left.target = -MOTOR 
+		motor.right.target = -MOTOR
+		
+	end
+
+##################################################################
+sub trou2
+
+		if  prox.ground.delta[0] &lt; SEUIL or prox.ground.delta[1] &lt; SEUIL then
+		
+			motor.left.target = -MOTOR 
+			motor.right.target = MOTOR 
+
+		end
+		
+		if prox.horizontal[2] > PROXH then
+	
+		state = 4
+		
+		end	
+	
+		motor.left.target = MOTOR 
+		motor.right.target = -MOTOR 
+
+##################################################################
+sub trouve
+		
+		motor.left.target = 0
+		motor.right.target = 0
+		limite = 0
+		call leds.top(0,32,0)
+
+##################################################################
+sub perdu
+	
+		motor.left.target = MOTOR 
+		motor.right.target = -MOTOR
+		call leds.circle(5,5,5,5,5,5,5,5)
+		call leds.top(32,0,0)
+		
+##################################################################
+sub stop
+
+	motor.left.target = 0
+		motor.right.target = 0
+		call leds.circle(0,0,0,0,0,0,0,0)
+		call leds.top(0,0,0)
+		call leds.bottom.left(0,0,0)
+		call leds.bottom.right(0,0,0)
+		RBeviteN = 0
+		LNeviteB = 0
+		compteur = 0
+		compteur2 = 0
+		compteur3 = 0
+		compteur4 = 0
+		limite = 0
+		timer.period[0] = 0
+		timer.period[1] = 0		
+####################################################################################################################
+onevent button.left
+		callsub intitiate
+		LNeviteB = 1
+
+onevent button.right
+		callsub intitiate
+		RBeviteN = 1
+
+#####################################################################################################################
+
+onevent timer1
+
+	limite++
+	
+	if  limite == 60 then
+		state = 8
+	end
+	if  limite == 70 then
+		state = 9
+		limite = 0
+	end
+
+onevent timer0
+	
+	if state == 2 or state == 3 then
+		if  compteur3 &lt;= 10 then
+			call leds.bottom.left(28,32,32)
+			compteur3++
+		else  
+			call leds.bottom.left(0,0,0)
+			compteur3 = 0
+		end
+	
+	
+		if  compteur4 &lt;= 10 and state != 9 then
+			call leds.bottom.right(28,32,32)
+			compteur4++
+		else
+			call leds.bottom.right(0,0,0)
+			compteur4 = 0 
+		end
+	end
+	
+	if state == 2 or state == 3 then
+	compteur2++	
+		if  compteur2 &lt; 10 then
+			call leds.top(0,0,32)
+		elseif compteur2 > 10 and compteur2 &lt; 20  then 
+			 call leds.top(32,32,32)
+		elseif  compteur2 > 20 then
+			call leds.top (32,0,0)
+		end
+			
+		if  compteur2 == 30 then
+			compteur2 = 0
+		end
+	end
+	
+#######################################################################################################################
+	if state == 2 then
+		compteur++
+		callsub chercher
+	end
+	
+	if  state == 3 then
+		compteur++
+		if  compteur &lt; 50 then
+			callsub trou1
+			call leds.prox.h(0,0,0,0,0,0,LEDRECULE,LEDRECULE)
+		else 
+			call leds.prox.h(0,0,0,0,0,0,0,0)
+			callsub trou2
+		end
+	end 
+	if  compteur == 100 then
+		compteur = 0
+		state = 2
+	end
+	
+	if  state == 4 then
+		compteur5++
+		callsub trouve
+		if  compteur5 == 400 then
+		compteur5 = 0
+		state = 9			
+		end
+	end
+	
+	if  state == 8 then
+		callsub perdu
+	end
+	
+	if  state == 9 then
+		callsub stop
+	end
+	
+#########################################################################################################################
+onevent button.backward
+	if button.backward == 1 then
+		state = 9
+	end
+	
+##########################################################################################################################
+
+	
+
+	
+</node>
+
+
+</network>
