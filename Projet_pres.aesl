@@ -41,9 +41,11 @@ call sound.system(-1) # Coupe les sons systèmes
 call leds.temperature(0,0) # Coupe la led temperature
 
 ###########################################################################################################################
-sub intitiate
-timer.period[0] = TIMER0
-timer.period[1] = TIMER1
+
+sub intitiate #initialise le programme
+
+timer.period[0] = TIMER0 #Set les timer
+timer.period[1] = TIMER1 #Set les timer
 state = 2
 if  RBeviteN == 1 then 
 	LNeviteB = 0
@@ -118,7 +120,9 @@ sub chercher
 			motor.left.target = MOTOR
 			motor.right.target = -MOTOR
 	end
+	
 ##################################################################
+
 sub trou1
 	
 	if  prox.horizontal[5] > 2500 or prox.horizontal[5] > 2500 then
@@ -138,6 +142,7 @@ sub trou1
 	end
 
 ##################################################################
+
 sub trou2
 
 		if  prox.ground.delta[0] &lt; SEUIL or prox.ground.delta[1] &lt; SEUIL then
