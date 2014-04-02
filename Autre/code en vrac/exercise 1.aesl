@@ -1,0 +1,39 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node e-puck-->
+<node nodeId="1" name="e-puck">var int_zigzag
+
+onevent timer
+int_zigzag++
+
+if  int_zigzag > 100 then
+	int_zigzag=0
+	
+elseif int_zigzag &lt; 50 then
+
+	wheel.left_speed=10
+	wheel.right_speed=0	
+	
+elseif  int_zigzag > 50  then
+
+	wheel.right_speed = 0
+	wheel.left_speed =10
+	
+end
+ 
+</node>
+
+
+</network>

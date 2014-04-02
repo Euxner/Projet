@@ -1,0 +1,28 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node e-puck-->
+<node nodeId="1" name="e-puck">onevent timer
+if  roues_vitesse_droite == 0 then
+	roues_vitesse_droite = 10
+	roues_vitesse_gauche = 0
+else
+	roues_vitesse_droite=0
+	roues_vitesse_gauche=10
+end
+#roues_vitesse_droite=-100
+#roues_vitesse_gauche=-100</node>
+
+
+</network>

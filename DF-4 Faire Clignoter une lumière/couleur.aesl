@@ -1,0 +1,29 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II">call sound.system(-1)
+
+if  prox.horizontal[0] > 100 then
+	call leds.top(32,0,0)
+elseif  prox.horizontal[4]> 100 then
+	call leds.top(0,32,0)
+else
+	call leds.top(0,0,0)
+	call leds.bottom.left(0,0,0)
+	call leds.bottom.right(0,0,0)
+end</node>
+
+
+</network>

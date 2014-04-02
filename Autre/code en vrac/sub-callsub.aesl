@@ -1,0 +1,58 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node e-puck-->
+<node nodeId="1" name="e-puck">var freqtimer
+freqtimer=0
+
+sub bleu
+
+	color.blue=100
+	color.green=0
+	color.red=0
+	
+sub rouge 
+
+	color.blue=0
+	color.green=0
+	color.red=100
+	
+sub vert
+
+	color.blue=0
+	color.green=100
+	color.red=0
+	
+onevent timer
+freqtimer++
+
+if freqtimer >= 0 and freqtimer &lt;= 10  then
+
+	callsub vert
+
+elseif freqtimer > 10 and freqtimer &lt;= 20 then
+
+	callsub bleu
+
+elseif freqtimer > 20  and freqtimer &lt;= 30 then
+
+	callsub rouge
+
+else 
+
+	freqtimer = 0
+end</node>
+
+
+</network>

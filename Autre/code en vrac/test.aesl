@@ -1,0 +1,79 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+<event size="1" name="timer"/>
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node e-puck-->
+<node nodeId="1" name="e-puck">var int_zigzag
+var bleu
+var rouge
+var vert
+onevent timer
+int_zigzag++
+
+while int_zigzag == 100 do
+	color.green=vert
+	color.blue=bleu
+	color.red=rouge
+	vert=0
+	bleu=0
+	rouge=0
+	int_zigzag=0
+end
+
+if cam.blue_middle == 100 then
+#and (cam.blue_left ==80 or cam.blue_right == 80)
+	wheel.left_speed=0
+	wheel.right_speed=0	
+	
+elseif  cam.blue[0] > 40  then
+
+	wheel.right_speed = 10
+	wheel.left_speed =8
+	rouge++
+	
+elseif cam.blue[1] > 40 then
+
+	wheel.right_speed = 10
+	wheel.left_speed =10
+	bleu++	
+	
+elseif cam.blue[2] > 40 then
+
+	wheel.right_speed = 8
+	wheel.left_speed =10
+	vert++
+	
+elseif prox[0]==12 and prox[7]==12 then
+	wheel.right_speed = 10
+	wheel.left_speed =10
+	
+elseif prox[1]&lt;12 or prox[2]&lt;12 or prox[5]&lt;12 or prox[6]&lt;12 or prox[3] &lt;12 or prox[4]&lt; 12 then
+
+	wheel.right_speed = 10
+	wheel.left_speed = 0
+end</node>
+
+
+<!--node e-puck 1-->
+<node nodeId="0" name="e-puck 1">speed.left = 100
+speed.right = 100
+
+while prox[4] &lt; 1000 and prox[3] &lt; 1000 do
+speed.left=100
+speed.right=-100
+	
+end</node>
+
+
+</network>
