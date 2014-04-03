@@ -36,90 +36,11 @@ state = 1
 ####################################################################################################################
 
 onevent timer0
+
 if prox.horizontal[0] != 0 and prox.horizontal[1] != 0 and prox.horizontal[2] != 0 and prox.horizontal[3] == 0 and prox.horizontal[4] == 0 then
 
-	state = 2
-	
-#####
-    #
-##  #
- #  #
-
-elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2] != 0 and prox.horizontal[3] != 0 and prox.horizontal[4] != 0  then
-
-	state = 3
-
-#####
-#
-#  ##
-#  #
-
-elseif prox.horizontal[0] == 0 and prox.horizontal[1] != 0 and prox.horizontal[2] != 0 and prox.horizontal[3] != 0 and prox.horizontal[4] == 0  then
-
-	state = 4
-
-######
-
-##  ##
- #  #
-
-#a faire
-elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2] == 0 and prox.horizontal[3] == 0 and prox.horizontal[4] == 0  then
-
-	state = 5
-	
- #	#
-##  ##
-
-##  ##
- #  #
-
-elseif prox.horizontal[0] != 0 and prox.horizontal[1] == 0 and prox.horizontal[2] == 0 and prox.horizontal[3] == 0 and prox.horizontal[4] == 0  then
-
-	state = 6
-	
-#  #
-#  ##
-#
-#  ##
-#  #
-
-elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2] == 0 and prox.horizontal[3] == 0 and prox.horizontal[4] != 0  then
-	
-	state = 7
-
- #  #
-##  #
-	#
-##  #
- #  #
-
-elseif prox.horizontal[0] != 0 and prox.horizontal[1] != 0 and prox.horizontal[2] != 0 and prox.horizontal[3] != 0 and prox.horizontal[4] != 0  then
-	
-	state = 8
-
-end 
-	
-if  prox.horizontal[0] > 2500 and prox.horizontal[4] > 2500 then
-
-	motor.left.target = 100
-	motor.right.target = 100
-end
-
-####################################################################################################################
-
-onevent timer1
-
-if  state == 1 then
-	
-	motor.left.target = 100
-	motor.right.target = 100
-
-######################################
-
-elseif  state == 2 then
-	
-	compteur2++
+while compteur2 != 41 do
+compteur2++
 	if  compteur2 &lt; 10 then
 	
 		motor.left.target = 100
@@ -133,12 +54,19 @@ elseif  state == 2 then
 		
 	if  compteur2 >= 41 then
 		compteur2 = 0
-		state = 0
+		state = 1
 	end
-	
-######################################
+end	
+#####
+    #
+##  #
+ #  #
+ 
+######################################################
 
-elseif  state == 3 then
+elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2] != 0 and prox.horizontal[3] != 0 and prox.horizontal[4] != 0  then
+
+while compteur3 != 41 do
 
 	compteur3++
 	if  compteur3 &lt; 10 then
@@ -154,12 +82,19 @@ elseif  state == 3 then
 		
 	if  compteur3 >= 41 then
 		compteur3 = 0
-		state = 0
+		state = 1
 	end
+end
+#####
+#
+#  ##
+#  #
 
-######################################
+######################################################
 
-elseif  state == 4 then
+elseif prox.horizontal[0] == 0 and prox.horizontal[1] != 0 and prox.horizontal[2] != 0 and prox.horizontal[3] != 0 and prox.horizontal[4] == 0  then
+
+while compteur4 != 41 do
 
 	compteur4++
 	if  compteur4 &lt; 10 then
@@ -175,12 +110,19 @@ elseif  state == 4 then
 		
 	if  compteur4 >= 41 then
 		compteur4 = 0
-		state = 0
+		state = 1
 	end
+end
+######
 
-######################################
+##  ##
+ #  #
+ 
+######################################################
 
-elseif  state == 5 then
+elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2] == 0 and prox.horizontal[3] == 0 and prox.horizontal[4] == 0  then
+
+while compteur5 != 41 do
 
 	compteur5++
 	if  compteur5 &lt; 10 then
@@ -196,12 +138,20 @@ elseif  state == 5 then
 		
 	if  compteur5 >= 41 then
 		compteur5 = 0
-		state = 0
+		state = 1
 	end
+end	
+ #	#
+##  ##
 
-######################################
+##  ##
+ #  #
+ 
+######################################################
 
-elseif  state == 6 then
+elseif prox.horizontal[0] != 0 and prox.horizontal[1] == 0 and prox.horizontal[2] == 0 and prox.horizontal[3] == 0 and prox.horizontal[4] == 0  then
+
+while compteur6 != 41 do
 
 	compteur6++
 	if  compteur6 &lt; 10 then
@@ -217,12 +167,20 @@ elseif  state == 6 then
 		
 	if  compteur6 >= 41 then
 		compteur6 = 0
-		state = 0
+		state = 1
 	end
+end	
+#  #
+#  ##
+#
+#  ##
+#  #
 
-######################################
+######################################################
 
-elseif  state == 7 then
+elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2] == 0 and prox.horizontal[3] == 0 and prox.horizontal[4] != 0  then
+
+while compteur7 != 41 do
 
 	compteur7++
 	if  compteur7 &lt; 10 then
@@ -238,17 +196,36 @@ elseif  state == 7 then
 		
 	if  compteur7 >= 41 then
 		compteur7 = 0
-		state = 0
+		state = 1
 	end
-	
-######################################
-
-elseif  state == 8 then
-
-	compteur8++
-	
-		
 end
+ #  #
+##  #
+	#
+##  #
+ #  #
+
+######################################################
+
+elseif prox.horizontal[0] != 0 and prox.horizontal[1] != 0 and prox.horizontal[2] != 0 and prox.horizontal[3] != 0 and prox.horizontal[4] != 0  then
+	
+	compteur8++
+	if  compteur8 >= 41 then
+		compteur8 = 0
+		state = 1
+	end
+
+end 
+	
+if  prox.horizontal[0] > 2500 and prox.horizontal[4] > 2500 then
+
+	motor.left.target = 100
+	motor.right.target = 100
+end
+
+####################################################################################################################
+
+######################################################
 
 ########################################################################################################################
 
