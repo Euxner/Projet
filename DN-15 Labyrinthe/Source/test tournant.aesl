@@ -6,6 +6,12 @@
 
 
 <!--list of constants-->
+<constant value="0" name="ETAT_OFF"/>
+<constant value="1" name="ETAT_AVANCE"/>
+<constant value="2" name="ETAT_TOURNE_DROITE"/>
+<constant value="3" name="ETAT_TOURNE_GAUCHE"/>
+<constant value="4" name="ETAT_IMPASSE"/>
+<constant value="100" name="VITESSE_BASE"/>
 
 
 <!--show keywords state-->
@@ -13,27 +19,51 @@
 
 
 <!--node thymio-II-->
-<node nodeId="1" name="thymio-II">var compteur2 = 0
-var compteur3 = 0
-var compteur4 = 0
-var state = 0
+<node nodeId="1" name="thymio-II"># Thymio II : cat's and mouse
+# Projet par N.Mojon ETML
+
+# declaration des constante
+# ETAT_OFF = Etat quand le robot est arreter
+# ETAT_AVANCE = Etat quand le robot avace simplement
+# ETAT_TOURNE_DROITE = Etat qui fait tourner le robot a droit
+# ETAT_TOURNE_GAUCHE = Etat qui fait tourner le robot a gauche
+# ETAT_IMPASSE = Etat qui permet au robot de faire demi-tour
+# VITESSE_BASE = Vitesse de base du robot lors de ses déplacement
+#
+
+var delai2 = 0
+var delai3 = 0
+var delai4 = 0
+var state = ETAT_OFF
 
 ########################################################################################################################
 
-onevent button.forward
+sub avance_normal
 
-timer.period[0] = 50
-timer.period[1] = 100
-motor.left.target = 100
-motor.right.target = 100
-state = 1
+	motor.left.target = VITESSE_BASE
+	motor.right.target = VITESSE_BASE
+	
+########################################################################################################################
+
+sub tourne_droite
+
+	motor.left.target = 80
+	motor.right.target = 250
+
+########################################################################################################################
+
+sub tourne_gauche
+
+	motor.left.target = 250
+	motor.right.target = 80
 
 ########################################################################################################################
 
 onevent timer0
-if prox.horizontal[0] != 0 and prox.horizontal[1] != 0 and prox.horizontal[2] != 0 and prox.horizontal[3] == 0 and prox.horizontal[4] == 0 then
 
-	state = 2
+if prox.horizontal[0] != 0 and prox.horizontal[1] != 0 and prox.horizontal[2] != 0 and prox.horizontal[3] == 0 and 	   prox.horizontal[4] == 0 then
+
+	state = ETAT_TOURNE_DROITE
 	
 #####
     #
@@ -44,7 +74,7 @@ if prox.horizontal[0] != 0 and prox.horizontal[1] != 0 and prox.horizontal[2] !=
 
 elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2] != 0 and prox.horizontal[3] != 0 and prox.horizontal[4] != 0  then
 
-	state = 3
+	state = ETAT_TOURNE_GAUCHE
 
 #####
 #
@@ -55,7 +85,7 @@ elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2
 
 elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2]  == 0 and prox.horizontal[3] == 0 and prox.horizontal[4] == 0  then
 
-	state = 2
+	state = ETAT_TOURNE_DROITE
 
 ######
 
@@ -64,9 +94,9 @@ elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2
 
 ######################################################
 
-elseif prox.horizontal[0] != 0 and prox.horizontal[1] != 0 and prox.horizontal[2] != 0 and prox.horizontal[3] != 0 and prox.horizontal[4] != 0  then
+elseif prox.horizontal[0] > 2500 and prox.horizontal[1] > 2500 and prox.horizontal[2] > 2500 and prox.horizontal[3] > 2500 and prox.horizontal[4] > 2500   then
 	
-	state = 5
+	state = ETAT_IMPASSE
 
 end 
 
@@ -79,74 +109,78 @@ end
 	
 if  prox.horizontal[0] > 2500 and prox.horizontal[4] > 2500 then
 
-	motor.left.target = 100
-	motor.right.target = 100
+	callsub avance_normal
+	
 end
 
 ########################################################################################################################
 
 onevent timer1
 
-if  state == 1 then
+if  state == ETAT_AVANCE then
 	
-	motor.left.target = 100
-	motor.right.target = 100
+	callsub avance_normal
 
 ######################################################
 
-elseif  state == 2 then
+elseif  state == ETAT_TOURNE_DROITE then
 	
-	compteur2++
-	if  compteur2 &lt; 10 then
+	delai2++
+	when  delai2 &lt; 10 do
 	
-		motor.left.target = 100
-		motor.right.target = 100
+		callsub avance_normal
+		
+	end
 	
-	elseif compteur2 > 10 then
+	when delai2 > 10 do
 
-		motor.left.target = 250
-		motor.right.target = 80
+		callsub tourne_droite
+		
 	end 	
 		
-	if  compteur2 >= 41 then
-		compteur2 = 0
+	when  delai2 >= 41 do
+	
+		delai2 = 0
 		state = 0
+		
 	end
 	
 ######################################################
 
-elseif  state == 3 then
+elseif  state == ETAT_TOURNE_GAUCHE then
 
-	compteur3++
-	if  compteur3 &lt; 10 then
+	delai3++
+	when  delai3 &lt; 10 do
 	
-		motor.left.target = 100
-		motor.right.target = 100
+		callsub avance_normal
+		
+	end
 	
-	elseif compteur3 > 10 then
+	when delai3 > 10 do
 
-		motor.left.target =  80
-		motor.right.target = 250
+		callsub tourne_gauche
+		
 	end 	
 		
-	if  compteur3 >= 41 then
-		compteur3 = 0
+	when  delai3 >= 41 do
+		delai3 = 0
 		state = 0
 	end
 
 ######################################################
 
-elseif  state == 4 then
+elseif  state == ETAT_IMPASSE then
 
-	compteur4++
-	if  compteur4 &lt; 90 then
+	delai4++
+	when  delai4 &lt; 90 do
 	
-		motor.left.target = -100
-		motor.right.target = 100
+		motor.left.target = -200
+		motor.right.target = 200
+		
 	end 	
 		
-	if  compteur4 >= 90 then
-		compteur4 = 0
+	when  delai4 >= 90 do
+		delai4 = 0
 		state = 1
 	end
 
@@ -154,16 +188,26 @@ end
 
 ########################################################################################################################
 
+onevent button.forward
+
+	timer.period[0] = 50
+	timer.period[1] = 100
+	motor.left.target = VITESSE_BASE
+	motor.right.target = VITESSE_BASE
+	state = ETAT_AVANCE
+	
+########################################################################################################################
+
 onevent button.backward
 
-motor.left.target = 0
-motor.right.target = 0
-timer.period[0] = 0
-timer.period[1] = 0
-compteur2 = 0
-compteur3 = 0
-compteur4 = 0
-state = 0</node>
+	motor.left.target = 0
+	motor.right.target = 0
+	timer.period[0] = 0
+	timer.period[1] = 0
+	delai2 = 0
+	delai3 = 0
+	delai4 = 0
+	state = ETAT_OFF</node>
 
 
 </network>
