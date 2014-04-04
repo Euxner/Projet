@@ -67,6 +67,7 @@ onevent timer0
 if prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2] != 0 and prox.horizontal[3] != 0 and prox.horizontal[4] != 0  then
 
 	state = ETAT_TOURNE_GAUCHE
+	timer.period[0] = 0
 
 #####
     #
@@ -78,6 +79,7 @@ if prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2] !=
 elseif prox.horizontal[0] != 0 and prox.horizontal[1] != 0 and prox.horizontal[2] != 0 and prox.horizontal[3] == 0 and 	   prox.horizontal[4] == 0 then
 
 	state = ETAT_TOURNE_DROITE
+	timer.period[0] = 0
 
 #####
 #
@@ -89,6 +91,7 @@ elseif prox.horizontal[0] != 0 and prox.horizontal[1] != 0 and prox.horizontal[2
 elseif prox.horizontal[0] == 0 and prox.horizontal[1] == 0 and prox.horizontal[2]  == 0 and prox.horizontal[3] == 0 and prox.horizontal[4] == 0  then
 
 	state = ETAT_TOURNE_GAUCHE
+	timer.period[0] = 0
 
 ######
 
@@ -146,6 +149,7 @@ elseif  state == ETAT_TOURNE_DROITE then
 	
 		delai2 = 0
 		state = ETAT_AVANCE
+		timer.period[0] = TIMER0
 		
 	end
 	
@@ -169,6 +173,7 @@ elseif  state == ETAT_TOURNE_GAUCHE then
 	when  delai3 >= 41 do
 		delai3 = 0
 		state = ETAT_AVANCE
+		timer.period[0] = TIMER0
 	end
 
 ######################################################
@@ -176,7 +181,7 @@ elseif  state == ETAT_TOURNE_GAUCHE then
 elseif  state == ETAT_IMPASSE then
 
 	delai4++
-	if  delai4 &lt; 35 then
+	if  delai4 &lt; 23 then
 	
 		motor.left.target = -200
 		motor.right.target = 200
