@@ -1,0 +1,40 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II"># Thymio II : laby test 4
+# Projet par N.Mojon ETML
+
+########################################################################################################################
+
+onevent button.forward #Lancé
+	
+	#tant que
+	while  prox.horizontal[0] == 0 and prox.horizontal[4] == 0 do
+		motor.left.target = 100
+		motor.right.target = 100
+	end
+			motor.left.target = 0
+			motor.right.target = 0
+	
+	
+########################################################################################################################
+
+onevent button.backward #Arreté
+
+	motor.left.target = 0
+	motor.right.target = 0</node>
+
+
+</network>
