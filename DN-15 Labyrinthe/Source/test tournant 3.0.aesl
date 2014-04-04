@@ -160,16 +160,16 @@ elseif  state == ETAT_TOURNE_GAUCHE then
 		
 	end
 	
-	when delai2 > 10 do
+	while prox.horizontal[0] &lt; 2500 and prox.horizontal[4] &lt; 2500 and prox.horizontal[2] != 0 do
 
 		callsub tourne_gauche
 		
 	end 
 		
-	when  delai3 >= 41 do
-		delai3 = 0
-		state = ETAT_AVANCE
-	end
+#	when  delai3 >= 41 do
+#		delai3 = 0
+#		state = ETAT_AVANCE
+#	end
 
 ######################################################
 
