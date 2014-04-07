@@ -21,11 +21,17 @@
 
 
 <!--node thymio-II-->
-<node nodeId="1" name="thymio-II"># Thymio II : How fast is Thymio
+<node nodeId="1" name="thymio-II"># Thymio II : A la recherche du Graal
 # Projet par N.Mojon
 # declaration des constante
 # MOTOR puissance du moteur
 # SEUIL	Seuil quand thymio detect le tape
+# TROU Seuil auquel le thymio detecte qu'il y a du vide
+# TIMER0 Vitesse du 1er timer 
+# TIMER1 Vitese du 2ème timer 
+# PROXH Proximité a laquel le robot detecte et evite un objet
+# PROXHT Proximité a laquel le robot detecte un objet sur un des capteur de coté et l'évite
+# LEDRECULE Constante pour la force des leds
 
 
 var state = 0		#0 = off, 1 = initiate , 2 = recherche ,3 = trou, 4 = trouver, 8 = perdu, 9 = stop
