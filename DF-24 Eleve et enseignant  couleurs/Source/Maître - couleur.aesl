@@ -69,8 +69,10 @@ prox.comm.tx = couleur
 #######################################
 
 onevent button.forward
-
-callsub couleur</node>
+if  button.forward == 1 then
+	callsub couleur
+end
+</node>
 
 
 </network>
