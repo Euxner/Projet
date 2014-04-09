@@ -1,0 +1,38 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+<constant value="2000" name="TIMER0"/>
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II"># Thymio II : let's communicate
+# Projet par N.Mojon ETML
+
+# TIMER0 = Vitesse du timer 0
+
+var chiffre2 = 0
+timer.period[0] = TIMER0
+
+call prox.comm.enable(1)
+
+onevent timer0
+
+call math.rand(chiffre2)
+chiffre2 = chiffre2%2048
+
+prox.comm.tx = chiffre2
+
+
+</node>
+
+
+</network>

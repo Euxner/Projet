@@ -13,7 +13,17 @@
 
 
 <!--node thymio-II-->
-<node nodeId="1" name="thymio-II"></node>
+<node nodeId="1" name="thymio-II">var chiffre2 = 0
+
+call prox.comm.enable(1)
+
+call math.rand(chiffre2)
+chiffre2 = chiffre2%2048
+
+prox.comm.tx = chiffre2
+
+
+</node>
 
 
 </network>

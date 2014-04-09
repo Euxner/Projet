@@ -1,0 +1,42 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+<constant value="0" name="ETAT_OFF"/>
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II"># Thymio II : Let's communicate 2
+# Projet par N.Mojon ETML
+
+# declaration des constante
+# ETAT_OFF = Etat quand le robot est arreter
+
+
+var state = 0
+var nombre2 = 0
+
+call sound.system(-1)
+########################################################################################################################
+
+call math.rand(nombre2)
+nombre2 = nombre2 / 100
+
+onevent button.backward #Arreté
+
+	motor.left.target = 0
+	motor.right.target = 0
+	timer.period[0] = 0
+	timer.period[1] = 0
+	state = ETAT_OFF</node>
+
+
+</network>

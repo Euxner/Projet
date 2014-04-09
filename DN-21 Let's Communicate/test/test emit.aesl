@@ -3,6 +3,7 @@
 
 
 <!--list of global events-->
+<event size="1" name="move"/>
 
 
 <!--list of constants-->
@@ -13,7 +14,10 @@
 
 
 <!--node thymio-II-->
-<node nodeId="1" name="thymio-II"></node>
+<node nodeId="1" name="thymio-II">call sound.system(-1)
+onevent button.backward
+event.args[0] = 1
+emit move event.args[0]</node>
 
 
 </network>
