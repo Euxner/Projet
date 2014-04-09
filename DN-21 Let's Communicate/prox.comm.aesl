@@ -6,7 +6,7 @@
 
 
 <!--list of constants-->
-<constant value="2000" name="TIMER0"/>
+<constant value="5000" name="TIMER0"/>
 
 
 <!--show keywords state-->
@@ -16,20 +16,25 @@
 <!--node thymio-II-->
 <node nodeId="1" name="thymio-II"># Thymio II : let's communicate
 # Projet par N.Mojon ETML
+# Robot Acteur
 
 # TIMER0 = Vitesse du timer 0
 
-var chiffre2 = 0
-timer.period[0] = TIMER0
+var chiffre2 = 0 # deuxième chiffre de l'addition
+timer.period[0] = TIMER0 # Viteswse du timer0
 
-call prox.comm.enable(1)
+call prox.comm.enable(1) # Active la transmission via les capteurs
 
 onevent timer0
 
-call math.rand(chiffre2)
-chiffre2 = chiffre2%2048
+call math.rand(chiffre2) # génère un nombre aléatoire
+chiffre2 = chiffre2%1024 # rand = entre −32768:32767 donc il faut eviter que cela depasse les 10bits maximum de la transmission.
 
-prox.comm.tx = chiffre2
+if  chiffre2 &lt; 0 then # evite les nombres négatifs
+	chiffre2 = -chiffre2
+end
+
+prox.comm.tx = chiffre2 # transmet le chiffre au deuxième robots
 
 
 </node>

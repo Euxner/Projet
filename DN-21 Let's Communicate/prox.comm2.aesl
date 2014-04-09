@@ -16,27 +16,30 @@
 <!--node thymio-II-->
 <node nodeId="1" name="thymio-II"># Thymio II : let's communicate
 # Projet par N.Mojon ETML
+# Robot Commuteur
 
 # TIMER0 = Vitesse du timer 0
 
-var chiffre1 = 0
-var resultat = 0
-timer.period[0] = TIMER0
+var chiffre1 = 0 # Premier chiffre de l'addition
+var resultat = 0 # Resultat de l'addition
+var validation = 0 # Valeur pour verification
+timer.period[0] = TIMER0 # Viteswse du timer0
 
-call prox.comm.enable(1)
+call prox.comm.enable(1) # Active la transmission via les capteurs
 
 onevent timer0
 
-call math.rand(chiffre1)
-chiffre1 = chiffre1%2048
+call math.rand(chiffre1)# génère un nombre aléatoire
+chiffre1 = chiffre1%1024# rand = entre −32768:32767 donc il faut eviter que cela depasse les 10bits maximum de la transmission.
 
-if  chiffre1 &lt; 0 then
+if  chiffre1 &lt; 0 then # evite les nombres négatifs
 	chiffre1 = -chiffre1
 end
 
-if  prox.comm.rx != 0 then
+if  prox.comm.rx != 0 then # Si  une valeur a été recue effectuerl'addition
 
-	resultat = chiffre1 + prox.comm.rx
+	resultat = chiffre1 + prox.comm.rx 
+	validation = resultat - chiffre1
 	
 end
 </node>
