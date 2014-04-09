@@ -1,0 +1,59 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+<constant value="1000" name="TIMER0"/>
+
+
+<!--show keywords state-->
+<keywords flag="false"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II">var couleur = 0
+timer.period[0] = TIMER0
+
+call prox.comm.enable(1)
+
+onevent timer0
+
+couleur = prox.comm.rx
+
+when couleur == 0 do
+	call leds.top(32,0,0)
+end
+
+when couleur == 1 do
+	call leds.top(0,32,0)
+end
+
+when couleur == 2 do
+	call leds.top(0,0,32)
+end
+
+when couleur == 3 do
+	call leds.top(32,32,0)
+end
+
+when couleur == 4 do
+	call leds.top(32,0,32)
+end
+
+when couleur == 5 do
+	call leds.top(0,32,32)
+end
+
+when couleur == 6 do
+	call leds.top(32,32,32)
+end
+
+when couleur == 7 do
+	call leds.top(0,0,0)
+end</node>
+
+
+</network>
