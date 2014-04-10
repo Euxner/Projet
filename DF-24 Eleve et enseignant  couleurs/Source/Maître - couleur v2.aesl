@@ -6,7 +6,7 @@
 
 
 <!--list of constants-->
-<constant value="5000" name="TIMER0"/>
+<constant value="2000" name="TIMER0"/>
 
 
 <!--show keywords state-->
@@ -14,16 +14,24 @@
 
 
 <!--node thymio-II-->
-<node nodeId="1" name="thymio-II">var rouge = 0
-var vert = 0
-var bleu = 0
-timer.period[0] = TIMER0
+<node nodeId="1" name="thymio-II"># Thymio II : Maître-Couleur
+# Projet par N.Mojon ETML
 
-call prox.comm.enable(1)
+# declaration des constante
+# TIMER0 = Vitesse du timer 0
+
+var delai = 0 # Delai pour la transmission des couleurs
+var rouge = 0 # Valeur de la led rouge
+var vert = 0 # Valeur de la led verte
+var bleu = 0 # Valeur de la led bleu
+timer.period[0] = 0 # Declaration du 1er timer
+call sound.system(-1) # Arret des sons système
+call prox.comm.enable(1) # autorise la transmission de donnée via les capteur IR
+prox.comm.tx = 0 # remet a 0 la valeur prox.comm.tx
 
 #######################################
 
-sub couleur
+sub couleur # methode pour générer les 3 couleur de la led top et afficher la couleur sur le robot
 call math.rand(rouge)
 call math.rand(vert)
 call math.rand(bleu)
@@ -32,30 +40,52 @@ rouge = rouge%32
 vert = vert%32
 bleu = bleu%32
 
-if  rouge&lt;0 then
+if  rouge&lt;0 then # Evite les nombres négatifs
 	rouge = -rouge
+	if  rouge == 0 then # Evite les valeurs 0
+		rouge++
+	end
 end
 
 if  vert&lt;0 then
 	vert = -vert
+	if  vert == 0 then
+		vert++
+	end
 end
 
 if  bleu&lt;0 then
 	bleu = -bleu
+	if  bleu == 0 then
+		bleu++
+	end
 end
 
 call leds.top(rouge,vert,bleu)
 #######################################
 
-onevent timer0
+onevent timer0 # event pour transmettre les couleurs
 
-prox.comm.tx = rouge
-
+if  delai == 0 then
+	prox.comm.tx = 0
+	delai++
+elseif  delai == 1 then
+	prox.comm.tx = rouge
+	delai++
+elseif  delai == 2 then
+	prox.comm.tx = vert
+	delai++
+elseif  delai == 3 then
+	prox.comm.tx = bleu
+	timer.period[0] = 0
+	delai = 0
+end
 #######################################
 
-onevent button.forward
+onevent button.forward # Event pour changer la coueleur
 if  button.forward == 1 then
 	callsub couleur
+	timer.period[0] = TIMER0
 end
 </node>
 

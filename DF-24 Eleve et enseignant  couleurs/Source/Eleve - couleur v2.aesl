@@ -7,6 +7,7 @@
 
 <!--list of constants-->
 <constant value="2000" name="TIMER0"/>
+<constant value="100" name="TIMER1"/>
 
 
 <!--show keywords state-->
@@ -14,47 +15,44 @@
 
 
 <!--node thymio-II-->
-<node nodeId="1" name="thymio-II">var couleur = 0
-timer.period[0] = TIMER0
+<node nodeId="1" name="thymio-II"># Thymio II : Eleve-Couleur
+# Projet par N.Mojon ETML
 
-call prox.comm.enable(1)
+# declaration des constante
+# TIMER0 = Vitesse du timer 0
+# TIMER1 = Vitesse du timer 1
+
+var delai = 0 # Delai pour la transmission des couleurs
+var rouge = 0 # Valeur de la led rouge
+var vert = 0 # Valeur de la led verte
+var bleu = 0 # Valeur de la led bleu
+timer.period[0] = TIMER0 # Lancement du Timer0
+timer.period[1] = TIMER1 # Lancement du Timer1
+
+call prox.comm.enable(1) # autorise la transmission de donnée via les capteur IR
 
 #######################################
-
+onevent timer1 # Redemarre le timer0
+if  prox.comm.rx == 0 then
+	timer.period[0] = TIMER0
+end
+	
 onevent timer0
-
-couleur = prox.comm.rx
-
-when couleur == 0 do
-	call leds.top(32,0,0)
+if  prox.comm.rx != 0 then  # Permet de lancer le processus
+	delai++
 end
 
-when couleur == 1 do
-	call leds.top(0,32,0)
-end
+if  delai == 1 then # capte les couleur transmisse et les affiche avec la led top
+	rouge = prox.comm.rx
 
-when couleur == 2 do
-	call leds.top(0,0,32)
-end
+elseif  delai == 2 then
+	vert = prox.comm.rx
 
-when couleur == 3 do
-	call leds.top(32,32,0)
-end
-
-when couleur == 4 do
-	call leds.top(32,0,32)
-end
-
-when couleur == 5 do
-	call leds.top(0,32,32)
-end
-
-when couleur == 6 do
-	call leds.top(32,32,32)
-end
-
-when couleur == 7 do
-	call leds.top(0,0,0)
+elseif  delai == 3 then
+	bleu = prox.comm.rx
+	call leds.top(rouge,vert,bleu)
+	delai = 0
+	timer.period[0] = 0
 end</node>
 
 
