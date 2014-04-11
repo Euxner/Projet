@@ -32,9 +32,14 @@ prox.comm.tx = 0 # remet a 0 la valeur prox.comm.tx
 #######################################
 
 sub couleur # methode pour générer les 3 couleur de la led top et afficher la couleur sur le robot
+
 call math.rand(rouge)
 call math.rand(vert)
 call math.rand(bleu)
+
+#rouge = 32
+#vert = 1
+#bleu = 27
 
 rouge = rouge%33
 vert = vert%33
@@ -44,13 +49,12 @@ if  rouge&lt;0 then # Evite les nombres négatifs
 	rouge = -rouge
 end
 
-if  rouge == 0 then # Evite les valeurs 0
+if  rouge == 0 then # Evite la valeur 0
 	rouge = 1
 end
 
 if  vert&lt;0 then
 	vert = -vert
-	
 end
 
 if  vert == 0 then
@@ -59,7 +63,6 @@ end
 
 if  bleu&lt;0 then
 	bleu = -bleu
-	
 end
 
 if  bleu == 0 then
@@ -85,9 +88,11 @@ elseif  delai == 3 then
 	timer.period[0] = 0
 	delai = 0
 end
+
 #######################################
 
 onevent button.forward # Event pour changer la coueleur
+
 if  button.forward == 1 then
 	callsub couleur
 	timer.period[0] = TIMER0

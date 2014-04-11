@@ -29,7 +29,6 @@ var bleu = 0 # Valeur de la led bleu
 call sound.system(-1) # Arret des sons système
 timer.period[0] = TIMER0 # Lancement du Timer0
 timer.period[1] = TIMER1 # Lancement du Timer1
-
 call prox.comm.enable(1) # autorise la transmission de donnée via les capteur IR
 
 #######################################
