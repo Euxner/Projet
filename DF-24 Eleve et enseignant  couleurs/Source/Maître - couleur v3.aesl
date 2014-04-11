@@ -71,20 +71,22 @@ call leds.top(rouge,vert,bleu)
 
 onevent timer0 # event pour transmettre les couleurs
 
+
 if  delai == 0 then
 	prox.comm.tx = 0
-	delai = 1
 elseif  delai == 1 then
 	prox.comm.tx = rouge
-	delai = 2
 elseif  delai == 2 then
 	prox.comm.tx = vert
-	delai = 3
 elseif  delai == 3 then
 	prox.comm.tx = bleu
 	timer.period[0] = 0
 	delai = 0
 end
+if  prox.comm.tx != 0 then
+	delai++
+end
+
 #######################################
 
 onevent button.forward # Event pour changer la coueleur
