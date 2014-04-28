@@ -37,13 +37,13 @@ call math.rand(rouge)
 call math.rand(vert)
 call math.rand(bleu)
 
-#rouge = 32
-#vert = 1
-#bleu = 27
-
 rouge = rouge%33
 vert = vert%33
 bleu = bleu%33
+
+#rouge = 32
+#vert = 1
+#bleu = 27
 
 if  rouge&lt;0 then # Evite les nombres négatifs
 	rouge = -rouge

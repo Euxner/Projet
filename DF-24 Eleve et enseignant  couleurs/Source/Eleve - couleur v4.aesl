@@ -3,11 +3,11 @@
 
 
 <!--list of global events-->
+<event size="1" name="test"/>
 
 
 <!--list of constants-->
-<constant value="90" name="TIMER0"/>
-<constant value="10" name="TIMER1"/>
+<constant value="100" name="TIMER0"/>
 
 
 <!--show keywords state-->
@@ -28,37 +28,27 @@ var vert = 0 # Valeur de la led verte
 var bleu = 0 # Valeur de la led bleu
 call sound.system(-1) # Arret des sons système
 timer.period[0] = TIMER0 # Lancement du Timer0
-timer.period[1] = TIMER1 # Lancement du Timer1
-
 call prox.comm.enable(1) # autorise la transmission de donnée via les capteur IR
 
 #######################################
 
-onevent timer1 # Redemarre le timer0
+onevent timer0
 
 if  prox.comm.rx == 33 then
 	timer.period[0] = TIMER0
-end
 	
-#######################################	
-	
-onevent timer0
-
-if  prox.comm.rx != 33 then  # Permet de lancer le processus
-	delai++
-end
-
-if  delai == 1 then # capte les couleur transmisse et les affiche avec la led top
+elseif  delai == 0 then # capte les couleur transmisse et les affiche avec la led top
 	rouge = prox.comm.rx
+	delai = 1
+
+elseif  delai == 1 then
+	vert = prox.comm.rx
+	delai = 2 
 
 elseif  delai == 2 then
-	vert = prox.comm.rx
-
-elseif  delai == 3 then
 	bleu = prox.comm.rx
 	call leds.top(rouge,vert,bleu)
 	delai = 0
-	timer.period[0] = 0
 end</node>
 
 

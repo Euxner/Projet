@@ -3,6 +3,7 @@
 
 
 <!--list of global events-->
+<event size="1" name="test"/>
 
 
 <!--list of constants-->
@@ -40,17 +41,11 @@ rouge = rouge%33
 vert = vert%33
 bleu = bleu%33
 
-if  rouge&lt;0 then # Evite les nombres négatifs
-	rouge = -rouge
-end
+call math.sqrt(rouge,rouge*rouge)# Evite les nombres négatifs
 
-if  vert&lt;0 then
-	vert = -vert	
-end
+call math.sqrt(vert,vert*vert) 
 
-if  bleu&lt;0 then
-	bleu = -bleu
-end
+call math.sqrt(bleu,bleu*bleu)
 	
 call leds.top(rouge,vert,bleu)
 #######################################
@@ -68,7 +63,6 @@ elseif  delai == 2 then
 	delai = 3
 elseif  delai == 3 then
 	prox.comm.tx = bleu
-	timer.period[0] = 0
 	delai = 0
 end
 
