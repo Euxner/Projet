@@ -20,7 +20,6 @@
 
 # declaration des constante
 # TIMER0 = Vitesse du timer 0
-# TIMER1 = Vitesse du timer 1
 
 var delai = 0 # Delai pour la transmission des couleurs
 var rouge = 0 # Valeur de la led rouge

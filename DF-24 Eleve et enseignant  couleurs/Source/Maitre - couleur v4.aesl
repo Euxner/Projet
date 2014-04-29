@@ -72,8 +72,7 @@ onevent button.forward # Event pour changer la coueleur
 if  button.forward == 1 then
 	callsub couleur
 	timer.period[0] = TIMER0
-end
-</node>
+end</node>
 
 
 </network>
