@@ -22,12 +22,12 @@
 # declaration des constante
 # TIMER0 = Vitesse du timer 0
 
-var son = 0 # Delai pour la transmission des couleurs
-var lumiere = 0
-var delai = 0
+var son = 0 # Delai pour la transmission des couleurs.
+var lumiere = 0 # Variable pour savoir si les lampes sont allumées ou non.
+var delai = 0 # variable pour savoir si les sons sont activés ou pas.
 call sound.system(-1)
 timer.period[0] = TIMER0 # Lancement du Timer0
-timer.period[1] = 0 
+timer.period[1] = 0 # initialisation du timer1
 
 ################################################
 
@@ -116,8 +116,6 @@ end
 ################################################
 
 onevent timer1
-
-emit test(motor.left.speed)
 
 if  prox.horizontal[2] > 1500 then
 	if  motor.left.target > 0 then
