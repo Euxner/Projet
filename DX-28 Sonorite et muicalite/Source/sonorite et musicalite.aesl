@@ -21,6 +21,7 @@
 
 # declaration des constante
 # TIMER0 = Vitesse du timer 0
+# TIMER1 = Vitesse du timer 1
 
 var son = 0 # Delai pour la transmission des couleurs.
 var lumiere = 0 # Variable pour savoir si les lampes sont allumées ou non.
@@ -31,6 +32,8 @@ timer.period[1] = 0 # initialisation du timer1
 
 ################################################
 
+sub sd
+
 
 
 ################################################
@@ -39,16 +42,15 @@ onevent button.forward
 
 if  button.forward == 1 then
 	if  motor.left.target >= 100 then
-	motor.left.target += 25
-	motor.right.target += 25
+		motor.left.target += 25
+		motor.right.target += 25
 
 	else 
-	motor.left.target = 100
-	motor.right.target = 100
-	timer.period[1] = TIMER1
+		motor.left.target = 100
+		motor.right.target = 100
+		timer.period[1] = TIMER1
 	end
 end
-
 
 ################################################
 
@@ -70,7 +72,7 @@ onevent button.left
 
 if  button.left == 1 then
 	if son == 1 then
-	 	call sound.system(2)
+	 	call sound.system(3)
 		son = 0
 	else 
 		call sound.system(-1)
@@ -84,10 +86,10 @@ onevent button.right
 
 if  button.right == 1 then
 	if  lumiere == 1 then
-	lumiere = 0
+		lumiere = 0
 	
 	elseif lumiere == 0 then
-	lumiere = 1
+		lumiere = 1
 	end
 end
 
