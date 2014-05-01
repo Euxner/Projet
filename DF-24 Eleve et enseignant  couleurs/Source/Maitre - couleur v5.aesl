@@ -1,0 +1,158 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II"># Thymio II : Maître-Couleur
+# Projet par N.Mojon ETML
+
+# declaration des constante
+# TIMER0 = Vitesse du timer 0
+
+
+var valeur
+var verif
+var binaire[10]
+var check
+var rouge # Valeur de la led rouge
+var rouge1
+var rouge2
+var rouge3
+var vert # Valeur de la led verte
+var vert1
+var vert2
+var vert3
+var bleu # Valeur de la led bleu
+var bleu1 
+var bleu2
+var bleu3
+call prox.comm.enable(1) # autorise la transmission de donnée via les capteur IR
+prox.comm.tx = 0 # remet a 0 la valeur prox.comm.tx
+
+#######################################
+
+sub initialisation # initialisation de toute les variables leds
+
+rouge = 0
+rouge1= 0
+rouge2= 0
+rouge3= 0
+bleu= 0
+bleu1= 0
+bleu2= 0
+bleu3= 0
+vert= 0
+vert1= 0
+vert2= 0
+vert3 = 0
+binaire = [0,0,0,0,0,0,0,0,0,0]
+
+#######################################
+
+sub couleur # methode pour générer les 3 couleur de la led top et afficher la couleur sur le robot
+call math.rand(valeur)
+
+valeur = valeur/64
+
+if valeur &lt; 0 then # Evite les nombres négatifs
+	valeur = -valeur
+end
+
+verif = valeur
+prox.comm.tx = verif
+
+if   valeur >= 256 then
+	binaire[8] = 1
+	valeur = valeur - 256
+end
+if   valeur >= 128 then
+	binaire[7] = 1
+	valeur = valeur - 128
+end
+if   valeur >= 64 then
+	binaire[6] = 1	
+	valeur = valeur - 64
+end
+if   valeur >= 32 then
+	binaire[5] = 1
+	valeur = valeur - 32
+end
+if   valeur >= 16 then
+	binaire[4] = 1
+	valeur = valeur - 16
+end
+if   valeur >= 8 then
+	binaire[3] = 1
+	valeur = valeur - 8
+end
+if   valeur >= 4 then
+	binaire[2] = 1
+	valeur = valeur - 4
+end
+if   valeur >= 2 then
+	binaire[1] = 1
+	valeur = valeur - 2
+end
+if   valeur >= 1 then
+	binaire[0] = 1
+	valeur = valeur - 1
+end
+
+if valeur == 0 then
+	check = 1
+end
+
+if binaire[8] == 1 then
+	rouge1 = 4
+end
+if binaire[7] == 1 then
+	rouge2 = 2
+end
+if binaire[6] == 1 then
+	rouge3 = 1
+end
+if binaire[5] == 1 then
+	vert1 = 4
+end
+if binaire[4] == 1 then
+	vert2 = 2
+end
+if binaire[3] == 1 then
+	vert3 = 1
+end
+if binaire[2] == 1 then
+	bleu1 = 4
+end
+if binaire[1] == 1 then
+	bleu2 = 2
+end
+if binaire[0] == 1 then
+	bleu3 = 1
+end
+
+rouge = (rouge1 + rouge2 + rouge3) * 4
+vert = (vert1 + vert2 + vert3) * 4
+bleu = (bleu1 + bleu2 + bleu3) * 4
+
+call leds.top(rouge,vert,bleu)
+
+#######################################
+
+onevent button.forward # Event pour changer la coueleur
+if  button.forward == 1 then
+	callsub initialisation
+	callsub couleur
+end</node>
+
+
+</network>
