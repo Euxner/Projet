@@ -23,15 +23,13 @@
 var valeur
 var verif
 var binaire[10]
+var reversebinaire[10]
 var rouge[4] # Valeur de la led rouge
 var vert[4] # Valeur de la led verte
 var bleu[4] # Valeur de la led bleu
 var puissance
 var i
 var j
-var k
-var l
-var z
 call prox.comm.enable(1) # autorise la transmission de donnée via les capteur IR
 prox.comm.tx = 0 # remet a 0 la valeur prox.comm.tx
 call sound.system(-1)
@@ -44,26 +42,6 @@ rouge = [0,0,0,0]
 bleu = [0,0,0,0]
 vert = [0,0,0,0]
 binaire = [0,0,0,0,0,0,0,0,0,0]
-i = 1
-j = 8
-k = 1
-l = 1
-
-#######################################
-
-sub puissancehuit
-
-puissance = 256
-puissance = puissance/i
-i*=2
-
-#######################################
-
-sub puissancetrois
-
-puissance = 4
-puissance = puissance/l
-l*=2
 
 #######################################
 
@@ -81,65 +59,46 @@ prox.comm.tx = verif
 
 #######################################
 
-callsub puissancehuit
+sub puissance
 
-while  valeur != 0  do
-	if  valeur >= puissance then
-		binaire[j] = 1
-	valeur -= puissance
-	end
-	callsub puissancehuit
-	j--
+i = 0
+
+while valeur != 0 do
+	binaire[i] = valeur%2
+	valeur = valeur/2
+	i++
 end
 
-j = 8
-k = 1
+#######################################
 
-while j &lt;= 8 and j >= 6 do
-	callsub puissancetrois
-	if  binaire[j] == 1 then
-		if k>=1 and k&lt;=3 then
-			rouge[k] = puissance
-		end
-	end
-	k++
-	j--
+sub reversetab
+
+i = 9
+j = 0
+
+while i != -1 do
+	reversebinaire[j] = binaire[i]
+	j++
+	i--
 end
 
-k = 1
-l = 1
+#######################################
 
-while j &lt;= 5 and j >= 3 do
-	callsub puissancetrois
-	if  binaire[j] == 1 then
-		if k>=1 and k&lt;=3 then
-			vert[k] = puissance
-		end
-	end
-	k++
-	j--
+sub binairecouleur
+
+for i in 0:0 do
+	
 end
 
-k = 1
-l = 1
+#######################################
 
-while j &lt;= 2 and j >= 0 do
-	callsub puissancetrois
-	if  binaire[j] == 1 then
-		if k>=1 and k&lt;=3 then
-			bleu[k] = puissance
-		end
-	end
-	k++
-	j--
-end
+sub couleurleds
 
-rouge[0] = (rouge[1] + rouge[2]+ rouge[3]) *4  
-vert[0] = (vert[1] + vert[2]+ vert[3]) *4
-bleu[0] = (bleu[1] + bleu[2]+ bleu[3]) *4
-
-call leds.top(rouge[0],vert[0],bleu[0])
-z = 255/2
+	rouge[0] = (rouge[1] + rouge[2]+ rouge[3]) *4  
+	vert[0] = (vert[1] + vert[2]+ vert[3]) *4
+	bleu[0] = (bleu[1] + bleu[2]+ bleu[3]) *4
+	
+	call leds.top(rouge[0],vert[0],bleu[0])
 
 #######################################
 
@@ -147,6 +106,10 @@ onevent button.forward # Event pour changer la coueleur
 if  button.forward == 1 then
 	callsub initialisation
 	callsub couleur
+	callsub puissance
+	callsub reversetab
+	callsub binairecouleur
+	callsub couleurleds	
 end</node>
 
 

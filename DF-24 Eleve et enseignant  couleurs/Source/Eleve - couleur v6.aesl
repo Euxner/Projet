@@ -28,19 +28,22 @@ var vert[4] # Valeur de la led verte
 var bleu[4] # Valeur de la led bleu
 var puissance
 var i
-var j
-var k
 call prox.comm.enable(1) # autorise la transmission de donnée via les capteur IR
 prox.comm.tx = 0 # remet a 0 la valeur prox.comm.tx
 timer.period[0] = TIMER0
 call sound.system(-1)
+
 #######################################
 
 sub puissance
 
-puissance = 256
-puissance = puissance/i
-i*=2
+i = 0
+
+while valeur != 0 do
+	binaire[i] = valeur%2
+	valeur = valeur/2
+	i++
+end
 
 #######################################
 
@@ -51,82 +54,19 @@ bleu = [0,0,0,0]
 vert = [0,0,0,0]
 binaire = [0,0,0,0,0,0,0,0,0,0]
 i = 1
-j = 8
-k = 1
-
 valeur = prox.comm.rx
 
 #######################################
 
 callsub puissance
 
-while  valeur != 0  do
-	if  valeur >= puissance then
-		binaire[j] = 1
-	valeur -= puissance
-	end
-	callsub puissance
-	j--
-end
-
-j = 8
-k = 1
-
-while j &lt;= 8 and j >= 6 do
-	if  binaire[j] == 1 then
-		if  k == 1 then
-			rouge[1] = 4
-		end
-		if  k == 2 then
-			rouge[2] = 2
-		end
-		if  k == 3 then
-			rouge[3] = 1
-		end
-	end
-	k++
-	j--
-end
-
-k = 1
-while j &lt;= 5 and j >= 3 do
-	if  binaire[j] == 1 then
-		if  k == 1 then
-			vert[1] = 4
-		end
-		if  k == 2 then
-			vert[2] = 2
-		end
-		if  k == 3 then
-			vert[3] = 1
-		end
-	end
-	k++
-	j--
-end
-
-k = 1
-while j &lt;= 2 and j >= 0 do
-	if  binaire[j] == 1 then
-		if  k == 1 then
-			bleu[1] = 4
-		end
-		if  k == 2 then
-			bleu[2] = 2
-		end
-		if  k == 3 then
-			bleu[3] = 1
-		end
-	end
-	k++
-	j--
-end
-
 rouge[0] = (rouge[1] + rouge[2]+ rouge[3]) *4  
 vert[0] = (vert[1] + vert[2]+ vert[3]) *4
 bleu[0] = (bleu[1] + bleu[2]+ bleu[3]) *4
 
-call leds.top(rouge[0],vert[0],bleu[0])</node>
+call leds.top(rouge[0],vert[0],bleu[0])
+
+#######################################</node>
 
 
 </network>
