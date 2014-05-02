@@ -86,8 +86,29 @@ end
 
 sub binairecouleur
 
-for i in 0:0 do
+j = 1
+
+for i in 1:9 do
+	if  i == 1 or i == 4 or i == 7 then
+		reversebinaire[i] *= 4
 	
+	elseif i == 2 or i == 5 or i == 8 then
+		reversebinaire[i] *= 2
+	end
+	
+	if  i &lt;= 3 and i >= 1 then
+		rouge[j] = reversebinaire[i]
+	elseif  i >= 4 and i &lt;= 6 then
+		vert[j] = reversebinaire[i]
+	elseif i >= 7 and i &lt;= 9  then
+		bleu[j] = reversebinaire[i]
+	end
+	j++
+	if  j == 4 then
+		j = 1
+	end
+	
+
 end
 
 #######################################
