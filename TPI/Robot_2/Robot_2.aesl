@@ -30,7 +30,7 @@
 
 var Son = 0 # Delai pour la transmission des couleurs.
 var Lumiere = 0 # Variable pour savoir si les lampes sont allumées ou non.
-var Identifiant = 1
+var Identifiant = 2
 var Etat = 0
 call sound.system(-1)
 call prox.comm.enable(1)
@@ -45,7 +45,7 @@ prox.comm.rx = 0
 prox.comm.tx = 0
 motor.left.target = 0
 motor.right.target = 0
-timer.period[0] = 0
+Etat = 0
 
 ################################################
 
@@ -69,6 +69,8 @@ sub Ballade # mode ballade
 	end
 	
 	if  prox.comm.rx != 0 then
+		motor.left.target = 0
+		motor.right.target = 0
 		Etat = 2
 	end
 
@@ -84,14 +86,16 @@ sub Pause #Mise en pause du robot
 
 onevent button.forward #activation du mode ballade
 
-timer.period[0] = TIMER0
 callsub Initialisation
+timer.period[0] = TIMER0
+
 
 ################################################
 
 onevent button.backward #Reset
 
 callsub Initialisation
+timer.period[0] = 0
 
 ################################################
 
@@ -134,8 +138,10 @@ end
 onevent timer0
 
 if  Etat == INITIALISE then
-	callsub Ballade
+	callsub Initialisation
 	Etat = 1
+elseif Etat == BALLADE then
+	callsub Ballade
 elseif Etat == LANGUE then
 	callsub Langue
 end 
