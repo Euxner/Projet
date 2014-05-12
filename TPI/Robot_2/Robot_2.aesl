@@ -19,6 +19,7 @@
 <constant value="1" name="FRANCAIS"/>
 <constant value="2" name="ALLEMAND"/>
 <constant value="4" name="ANGLAIS"/>
+<constant value="500" name="DETECT"/>
 
 
 <!--show keywords state-->
@@ -44,9 +45,18 @@ var i = 0
 var LangueRecueBinaire[3]
 var LangueParleeBinaire[3]
 var ChoixLangue = 0
+var speed_diff
+var speed=150
+var speed_l=0
+var max
+var mi
+var t
 call sound.system(-1)
 call prox.comm.enable(1)
+call leds.top (0,0,0)
+call leds.circle (0,0,0,0,0,0,0,0)
 timer.period[0] = 0
+
 
 ################################################
 
@@ -66,6 +76,12 @@ i = 0
 LangueRecueBinaire = [0,0,0]
 LangueParleeBinaire = [0,0,0]
 ChoixLangue = 0
+speed_diff = 0
+speed=0
+speed_l=0
+max = 0
+mi = 0
+t = 0
 
 ################################################
 
@@ -84,8 +100,8 @@ sub Ballade # mode ballade
 	end
 	 
 	if prox.horizontal[2] == 0 or prox.horizontal[0] == 0 or prox.horizontal[4] == 0 then 
-		motor.left.target = 150
-		motor.right.target = 150
+		motor.left.target = MOTOR
+		motor.right.target = MOTOR
 	end
 	
 	if  prox.comm.rx != 0  and prox.horizontal[2] >= 2000 then
@@ -126,15 +142,15 @@ while LangueParleeBinaire[i] == LangueRecueBinaire[i] do
 	i++
 end
 
-if ChoixLangue == 0 then
+when ChoixLangue == 0 do #son fr
 	call sound.play(1)
 end
 
-if ChoixLangue == 1 then
+when ChoixLangue == 1 do # son all
 	call sound.play(3)
 end
 
-if ChoixLangue == 2 then
+when ChoixLangue == 2 do # son angs
 	call sound.play(2)
 end
 
@@ -151,6 +167,62 @@ callsub ChoixLangue
 ################################################
 
 sub Activite
+
+
+
+################################################
+
+sub CatchMe
+
+speed=MOTOR
+
+max = prox.horizontal[0]
+	mi = 0
+	speed_l=0
+	for i in 0:4 do 
+		if prox.horizontal[i]> max then
+			max = prox.horizontal[i]
+			mi = i
+		end
+	end
+	
+	t = 2 - mi
+	speed_diff = t * (speed / 2)
+	if max > 3500 then
+		speed_l = (3500 - max) / 2
+	end
+	if (max > 4000) then
+		speed_l = -speed 
+	end
+	if (max &lt; 3000) then
+		t = 300 - (max - 1000) / 7
+		speed_l = t
+	end
+	
+	if (max &lt; 2000) then
+		speed_l = speed 
+	end
+	
+	if(speed_l > speed) then
+		speed_l = speed
+	end
+	if(speed_l &lt; -speed) then
+		speed_l = -speed
+	end
+	
+	if(max &lt; DETECT) then
+		motor.left.target = 0
+		motor.right.target = 0
+	 else 
+		motor.right.target = speed_diff + speed_l
+		motor.left.target = speed_l - speed_diff
+	 end
+
+################################################
+
+sub Dance
+
+
 
 ################################################
 
@@ -229,7 +301,7 @@ elseif Etat == BALLADE then
 	callsub Ballade
 elseif Etat == LANGUE then
 	callsub Langue
-elseif  Etat == ACTIVITE then
+elseif Etat == ACTIVITE then
 	callsub Activite
 end 
 
