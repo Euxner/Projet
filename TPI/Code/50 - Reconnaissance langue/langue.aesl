@@ -69,34 +69,6 @@ ChoixLangue = 0
 
 ################################################
 
-sub Ballade # mode ballade
-
-	prox.comm.tx = Identifiant
-
-	while  prox.horizontal[4] > PROXHORIZONTALE or prox.horizontal[3] > PROXHORIZONTALE or prox.horizontal[2] > PROXHORIZONTALE do
-		motor.left.target = -MOTOR
-		motor.right.target = MOTOR
-	end
-	
-	while  prox.horizontal[0] > PROXHORIZONTALE or prox.horizontal[2] > PROXHORIZONTALE do
-		motor.left.target = MOTOR
-		motor.right.target = -MOTOR
-	end
-	 
-	if prox.horizontal[2] == 0 or prox.horizontal[0] == 0 or prox.horizontal[4] == 0 then 
-		motor.left.target = 150
-		motor.right.target = 150
-	end
-	
-	if  prox.comm.rx != 0  and prox.horizontal[2] >= 2000 then
-		motor.left.target = 0
-		motor.right.target = 0
-		prox.comm.tx = LangueParlee
-		Etat = 2
-	end
-
-################################################
-
 sub BinaireLangue
 
 i = 0
@@ -148,92 +120,7 @@ LangueRecue = prox.comm.rx
 callsub BinaireLangue
 callsub ChoixLangue
 
-################################################
-
-sub Activite
-
-################################################
-
-sub Pause #Mise en pause du robot
-	
-	if  EtatPause == -1 then
-		EtatPause = Etat
-	Etat = PAUSE
-		if  motor.left.target != 0 then
-		motor.left.target = 0
-		motor.right.target = 0
-		end
-	else
-		Etat = EtatPause
-		EtatPause = -1	
-	end
-################################################
-
-onevent button.forward #activation du mode ballade
-
-callsub Initialisation
-timer.period[0] = TIMER0
-
-
-################################################
-
-onevent button.backward #Reset
-
-callsub Initialisation
-timer.period[0] = 0
-
-################################################
-
-onevent button.center #Active le mode pause
-
-if button.center == 1 then
-	callsub Pause
-end
-
-################################################
-
-onevent button.left
-
-when  button.left == 1 do
-
-	if  Lumiere == TRUE then
-		Lumiere = FALSE
-
-	else
-		Lumiere = TRUE
-	end
-end
-
-################################################
-
-onevent button.right
-
-
-when  button.right == 1 do
-	if Son == TRUE then
-		Son = FALSE
-	else 
-		Son = TRUE
-		call sound.system(2)
-	end
-end
-
-################################################
-
-onevent timer0
-
-if  Etat == INITIALISE then
-	callsub Initialisation
-	Etat = 1
-elseif Etat == BALLADE then
-	callsub Ballade
-elseif Etat == LANGUE then
-	callsub Langue
-elseif Etat == ACTIVITE then
-	callsub Activite
-end 
-
-</node>
+################################################</node>
 
 
 </network>
