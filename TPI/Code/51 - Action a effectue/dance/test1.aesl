@@ -1,0 +1,50 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II">var delai = 0
+var delai2 = 0
+call prox.comm.enable(1)
+prox.comm.tx = 0
+call leds.top (0,0,0)
+timer.period[0] = 0
+prox.comm.tx = 0
+prox.comm.rx = 0
+call sound.system(-1)
+
+
+onevent button.forward
+
+if button.forward == 1 then
+	timer.period[0] = 20
+	prox.comm.tx = 1
+end
+
+onevent timer0
+
+if  delai &lt;=33 then
+	call leds.top(0,32,0)
+elseif  delai>33 and delai &lt;= 66 then
+	call leds.top(32,0,0)
+elseif delai > 66 and delai &lt;=100 then
+	call leds.top(0,0,32)
+elseif delai > 100 then
+	delai = 0
+end
+delai++
+
+</node>
+
+
+</network>

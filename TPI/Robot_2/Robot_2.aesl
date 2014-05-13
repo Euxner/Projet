@@ -3,6 +3,8 @@
 
 
 <!--list of global events-->
+<event size="1" name="rx"/>
+<event size="1" name="tx"/>
 
 
 <!--list of constants-->
@@ -12,7 +14,8 @@
 <constant value="0" name="INITIALISE"/>
 <constant value="1" name="BALLADE"/>
 <constant value="2" name="LANGUE"/>
-<constant value="3" name="ACTIVITE"/>
+<constant value="3" name="EMOTIONS"/>
+<constant value="4" name="ACTIVITE"/>
 <constant value="9" name="PAUSE"/>
 <constant value="1" name="TRUE"/>
 <constant value="0" name="FALSE"/>
@@ -45,12 +48,16 @@ var i = 0
 var LangueRecueBinaire[3]
 var LangueParleeBinaire[3]
 var ChoixLangue = 0
-var speed_diff
+var speed_diff = 0
 var speed=150
 var speed_l=0
-var max
-var mi
-var t
+var max = 0
+var mi = 0
+var t = 0
+var NActivite = 0
+var Reponse = 0
+var Initiateur = 0
+var delai = 0
 call sound.system(-1)
 call prox.comm.enable(1)
 call leds.top (0,0,0)
@@ -82,6 +89,10 @@ speed_l=0
 max = 0
 mi = 0
 t = 0
+NActivite = 0
+Reponse = 0
+Initiateur = 0
+delai = 0
 
 ################################################
 
@@ -161,14 +172,106 @@ sub Langue
 
 LangueRecue = prox.comm.rx
 
+call sound.play(3)
+
 callsub BinaireLangue
 callsub ChoixLangue
 
 ################################################
 
-sub Activite
+sub ChoixActivité
+
+call math.rand(NActivite)
+
+if  NActivite &lt; 0 then
+	NActivite = -NActivite
+end
+
+NActivite = NActivite%2
+
+################################################
+
+sub RepActivite
+
+call math.rand(Reponse)
+
+if  Reponse &lt; 0 then
+	Reponse = -Reponse
+end
+
+Reponse = Reponse%3
+
+################################################
+
+sub Emotions
 
 
+#call sound.play(1) #bjr
+#prox.comm.tx = 1
+#call leds.top(32,32,32)
+
+if  delai > 20 then
+	
+	when Etat == 3 and prox.comm.rx == 1 do
+		call sound.play(1) #bjr
+		prox.comm.tx = 2
+		call leds.top(32,32,32)
+	end
+	
+	callsub ChoixActivité
+	
+	if delai > 40	then
+	
+		when Etat == 3 and prox.comm.rx == 2 do
+			Initiateur = TRUE
+			if NActivite == 1 then
+				call sound.play(7) # Chat ?
+			else
+				call sound.play(8) # Dance ?
+			end
+			prox.comm.tx = 3
+			call leds.top(0,0,32)
+		end
+		
+		callsub RepActivite
+		
+		if  delai > 60 then
+			
+			if  Etat == 3 and prox.comm.rx == 3 then
+				if Reponse == 0 then
+					call sound.play(4) # OK
+					Etat = 4
+					prox.comm.tx = 5
+					call leds.top(0,32,0)
+				elseif Reponse == 1 then
+					call sound.play(5) # N/A
+					prox.comm.tx = 2
+					call leds.top(32,32,0)
+				elseif Reponse == 2 then
+					call sound.play(6) # NO
+					Etat = 1
+					prox.comm.tx = 6
+					callsub Ballade
+					call leds.top(32,0,0)
+					call sound.play(10) # Aureveoir
+				end
+			end
+					
+			when prox.comm.rx == 5 and Etat == 6 do
+				Etat = 1
+				callsub Ballade
+				call leds.top(32,0,32)
+			end
+					
+			when prox.comm.rx == 5 and Etat == 3 do
+				Etat = 4
+				call leds.top(32,0,32)
+			end
+		end
+	end
+end
+
+delai++
 
 ################################################
 
@@ -222,7 +325,29 @@ max = prox.horizontal[0]
 
 sub Dance
 
+	
 
+
+
+################################################
+
+sub Activite
+
+if Initiateur == 1 then
+	when NActivite == 1 do
+		callsub Ballade
+	end
+	when  NActivite == 0 do
+		callsub Dance		
+	end
+else 
+	callsub CatchMe
+end
+
+call sound.play(10)
+call sound.play(9)
+callsub Ballade
+Etat = 1
 
 ################################################
 
@@ -245,7 +370,6 @@ onevent button.forward #activation du mode ballade
 
 callsub Initialisation
 timer.period[0] = TIMER0
-
 
 ################################################
 
@@ -301,6 +425,8 @@ elseif Etat == BALLADE then
 	callsub Ballade
 elseif Etat == LANGUE then
 	callsub Langue
+elseif Etat == EMOTIONS then
+	callsub Emotions
 elseif Etat == ACTIVITE then
 	callsub Activite
 end 
