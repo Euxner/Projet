@@ -52,17 +52,17 @@ var i = 0
 var LangueRecueBinaire[3]
 var LangueParleeBinaire[3]
 var ChoixLangue = 0
-var speed_diff = 0
-var speed=150
+var DifferenceVitesse = 0
+var VitesseBase=150
 var speed_l=0
 var max = 0
 var mi = 0
-var DelaiRep = 0
 var t = 0
 var NActivite = 0
 var Reponse = 0
 var Initiateur = 0
-var delai = 0
+var DelaiTransmission = 0
+var DelaiRep = 0
 var DelaiAct = 0
 var Parle = FALSE
 var PostBallade = 0
@@ -93,8 +93,8 @@ i = 0
 LangueRecueBinaire = [0,0,0]
 LangueParleeBinaire = [0,0,0]
 ChoixLangue = 0
-speed_diff = 0
-speed=0
+DifferenceVitesse = 0
+VitesseBase=0
 speed_l=0
 max = 0
 mi = 0
@@ -102,7 +102,7 @@ t = 0
 NActivite = 0
 Reponse = 0
 Initiateur = 0
-delai = 0
+DelaiTransmission = 0
 DelaiRep = 0
 DelaiAct = 0
 call leds.top (0,0,0)
@@ -260,7 +260,7 @@ call leds.top(32,32,32) # blanc
 Parle = TRUE
 end
 
-if  delai > 20 then
+if  DelaiTransmission > 20 then
 	
 	when Etat == 3 and prox.comm.rx == 1 do
 #		call sound.play(1) #bjr
@@ -268,7 +268,7 @@ if  delai > 20 then
 		call leds.top(32,32,32) # blanc
 	end
 	
-	if delai > 40 then
+	if DelaiTransmission > 40 then
 	
 		when Etat == 3 and prox.comm.rx == 2 do
 			Initiateur = TRUE
@@ -282,7 +282,7 @@ if  delai > 20 then
 			call leds.top(0,0,32) # bleu
 		end
 				
-		if  delai > 60 then
+		if  DelaiTransmission > 60 then
 			if  DelaiRep > 20 then
 				if  Etat == 3 and prox.comm.rx == 3 then
 					callsub RepActivite
@@ -323,14 +323,14 @@ if  delai > 20 then
 	end
 end
 
-delai++
+DelaiTransmission++
 DelaiRep++
 
 ################################################
 
 sub CatchMe
 
-speed=MOTOR
+VitesseBase=MOTOR
 
 max = prox.horizontal[0]
 	mi = 0
@@ -343,12 +343,12 @@ max = prox.horizontal[0]
 	end
 	
 	t = 2 - mi
-	speed_diff = t * (speed / 2)
+	DifferenceVitesse = t * (VitesseBase / 2)
 	if max > 3500 then
 		speed_l = (3500 - max) / 2
 	end
 	if (max > 4000) then
-		speed_l = -speed 
+		speed_l = -VitesseBase 
 	end
 	if (max &lt; 3000) then
 		t = 300 - (max - 1000) / 7
@@ -356,22 +356,22 @@ max = prox.horizontal[0]
 	end
 	
 	if (max &lt; 2000) then
-		speed_l = speed 
+		speed_l = VitesseBase 
 	end
 	
-	if(speed_l > speed) then
-		speed_l = speed
+	if(speed_l > VitesseBase) then
+		speed_l = VitesseBase
 	end
-	if(speed_l &lt; -speed) then
-		speed_l = -speed
+	if(speed_l &lt; -VitesseBase) then
+		speed_l = -VitesseBase
 	end
 	
 	if(max &lt; DETECT) then
 		motor.left.target = 0
 		motor.right.target = 0
 	 else 
-		motor.right.target = speed_diff + speed_l
-		motor.left.target = speed_l - speed_diff
+		motor.right.target = DifferenceVitesse + speed_l
+		motor.left.target = speed_l - DifferenceVitesse
 	 end
 
 ################################################

@@ -1,0 +1,1322 @@
+<graphml version="1.3" xmlns="http://graphml.graphdrawing.org/xmlns/graphml" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <key id="d0" for="port" attr.name="style" attr.type="complex"/>
+  <key id="d1" for="port" attr.name="geometry" attr.type="complex">
+    <y:Geometry x="0" y="0"/>
+  </key>
+  <key id="d2" for="port" attr.name="http://www.yworks.com/xml/yfiles-graphml/1.0/portviewstates" attr.type="complex"/>
+  <key id="d3" for="all" attr.name="usertags" attr.type="complex"/>
+  <key id="d4" for="node" attr.name="style" attr.type="complex"/>
+  <key id="d5" for="node" attr.name="labels" attr.type="complex"/>
+  <key id="d6" for="node" attr.name="node-2-id" attr.type="string"/>
+  <key id="d7" for="node" attr.name="geometry" attr.type="complex">
+    <y:Geometry x="-15" y="-15" width="30" height="30"/>
+  </key>
+  <key id="d8" for="node" attr.name="nodeinsets" attr.type="complex">
+    <y:Insets left="0" top="0" right="0" bottom="0"/>
+  </key>
+  <key id="d9" for="node" attr.name="node-description" attr.type="string"/>
+  <key id="d10" for="node" attr.name="node-url" attr.type="string"/>
+  <key id="d11" for="node" attr.name="http://www.yworks.com/xml/yfiles-graphml/1.0/nodeviewstates" attr.type="complex"/>
+  <key id="d12" for="node" attr.name="http://www.yworks.com/xml/yfiles-graphml/1.0/expansionstate" attr.type="boolean">
+    <default>true</default>
+  </key>
+  <key id="d13" for="edge" attr.name="style" attr.type="complex"/>
+  <key id="d14" for="edge" attr.name="labels" attr.type="complex"/>
+  <key id="d15" for="edge" attr.name="edge-2-id" attr.type="string"/>
+  <key id="d16" for="edge" attr.name="geometry" attr.type="complex">
+    <y:Path/>
+  </key>
+  <key id="d17" for="edge" attr.name="edge-description" attr.type="string"/>
+  <key id="d18" for="edge" attr.name="edge-url" attr.type="string"/>
+  <key id="d19" for="edge" attr.name="http://www.yworks.com/xml/yfiles-graphml/1.0/edgeviewstates" attr.type="complex"/>
+  <key id="d20" for="graph" attr.name="sharedData" attr.type="complex"/>
+  <key id="d21" for="graphml" yfiles.type="resources"/>
+  <graph id="G" edgedefault="directed">
+    <data key="d20">
+      <y:SharedData>
+        <y:ISimpleLabelStyle clipText="true" autoFlip="true" id="1">
+          <y:Font refid="17"/>
+          <y:Brush name="SolidBrush" color="Black"/>
+        </y:ISimpleLabelStyle>
+        <y:Font family="Dialog" points="12" style="Regular" color="#000000" id="2"/>
+        <y:Pen name="SolidColor" color="Black" width="1" id="3"/>
+        <y:ModelState distance="0" angle="0" edgeRelativeDistance="false" id="4"/>
+        <y:Pen name="SolidColor" color="Black" width="1" id="5"/>
+        <y:ISimpleLabelStyle clipText="true" autoFlip="true" id="6">
+          <y:Font refid="2"/>
+          <y:Brush name="SolidBrush" color="Black"/>
+        </y:ISimpleLabelStyle>
+        <y:LineType type="line" width="1" color="#000000" id="7"/>
+        <y:Brush name="LinearGradient" angle="45" id="8">
+          <y:GradientEntry color="#ffe8eef7" ratio="0"/>
+          <y:GradientEntry color="#ffb7c9e3" ratio="0.66"/>
+        </y:Brush>
+        <y:Font family="Dialog" points="12" style="Regular" color="#000000" id="9"/>
+        <y:ISimpleLabelStyle clipText="true" autoFlip="true" id="10">
+          <y:Font refid="9"/>
+          <y:Brush name="SolidBrush" color="Black"/>
+        </y:ISimpleLabelStyle>
+        <y:Pen name="SolidColor" color="Black" width="1" id="11"/>
+        <y:Brush name="SolidBrush" color="Black" id="12"/>
+        <y:Font family="Dialog" points="12" style="Regular" color="#000000" id="13"/>
+        <y:Brush name="SolidBrush" color="Black" id="14"/>
+        <y:ModelState id="15">
+          <y:Insets left="0" right="0" top="0" bottom="0"/>
+        </y:ModelState>
+        <y:InteriorLabelModel position="Center" id="16">
+          <y:ModelState refid="15"/>
+        </y:InteriorLabelModel>
+        <y:Font family="Dialog" points="12" style="Regular" color="#000000" id="17"/>
+        <y:Pen name="SolidColor" color="Black" width="1" id="18"/>
+      </y:SharedData>
+    </data>
+    <node id="G:n0">
+      <port name="p0"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="6"/>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Allumage</y:Text>
+            <y:PreferredSize width="58.45" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">0</data>
+      <data key="d7">
+        <y:Geometry x="-900.8848167539268" y="-156" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n1">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <port name="p5"/>
+      <port name="p6"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="6"/>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Ballade</y:Text>
+            <y:PreferredSize width="45.15" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">1</data>
+      <data key="d7">
+        <y:Geometry x="-434" y="-156" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n2">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="6"/>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Langue</y:Text>
+            <y:PreferredSize width="45.9" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">2</data>
+      <data key="d7">
+        <y:Geometry x="-129.00000000000006" y="-167.5" width="105" height="63"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n3">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="6"/>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Emotions</y:Text>
+            <y:PreferredSize width="57.7" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">3</data>
+      <data key="d7">
+        <y:Geometry x="234.09062736038936" y="-167.5" width="112" height="63"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n4">
+      <port name="p0"/>
+      <port name="p1"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="6"/>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Pause</y:Text>
+            <y:PreferredSize width="37.3" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">4</data>
+      <data key="d7">
+        <y:Geometry x="-434" y="58" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n5">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <port name="p5"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="6"/>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Choix activité</y:Text>
+            <y:PreferredSize width="83" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">5</data>
+      <data key="d7">
+        <y:Geometry x="529.1712906929583" y="-156" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n6">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="6"/>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Activitée executée</y:Text>
+            <y:PreferredSize width="109.5" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">6</data>
+      <data key="d7">
+        <y:Geometry x="792.2519540255272" y="-169.5" width="112" height="63"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n7">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <port name="p5"/>
+      <port name="p6"/>
+      <port name="p7"/>
+      <port name="p8"/>
+      <port name="p9"/>
+      <port name="p10"/>
+      <port name="p11"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font refid="2"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Pause</y:Text>
+            <y:PreferredSize width="37.3" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">7</data>
+      <data key="d7">
+        <y:Geometry x="529.1712906929583" y="58" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n8">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <port name="p5"/>
+      <port name="p6"/>
+      <port name="p7"/>
+      <port name="p8"/>
+      <port name="p9"/>
+      <port name="p10"/>
+      <port name="p11"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font refid="2"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Pause</y:Text>
+            <y:PreferredSize width="37.3" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">8</data>
+      <data key="d7">
+        <y:Geometry x="250.09062736038936" y="58" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n9">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <port name="p5"/>
+      <port name="p6"/>
+      <port name="p7"/>
+      <port name="p8"/>
+      <port name="p9"/>
+      <port name="p10"/>
+      <port name="p11"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font refid="2"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Pause</y:Text>
+            <y:PreferredSize width="37.3" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">9</data>
+      <data key="d7">
+        <y:Geometry x="-116.50000000000006" y="56" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n10">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <port name="p5"/>
+      <port name="p6"/>
+      <port name="p7"/>
+      <port name="p8"/>
+      <port name="p9"/>
+      <port name="p10"/>
+      <port name="p11"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font refid="2"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Pause</y:Text>
+            <y:PreferredSize width="37.3" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">11</data>
+      <data key="d7">
+        <y:Geometry x="808.2519540255272" y="56" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n11">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <port name="p5"/>
+      <port name="p6"/>
+      <port name="p7"/>
+      <port name="p8"/>
+      <port name="p9"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:InteriorLabelModel position="Center">
+              <y:ModelState>
+                <y:Insets left="0" right="0" top="0" bottom="0"/>
+              </y:ModelState>
+            </y:InteriorLabelModel>
+            <y:Text>Initialisation</y:Text>
+            <y:PreferredSize width="75.1" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">10</data>
+      <data key="d7">
+        <y:Geometry x="-666.502617801047" y="-158.05811518324612" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush name="LinearGradient" angle="45">
+              <y:GradientEntry color="#ffe8eef7" ratio="0"/>
+              <y:GradientEntry color="#ffb7c9e3" ratio="0.66"/>
+            </y:Brush>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:Pen name="SolidColor" color="Black" width="1"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n12">
+      <port name="p0"/>
+      <port name="p1"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font refid="2"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Pause</y:Text>
+            <y:PreferredSize width="37.3" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">12</data>
+      <data key="d7">
+        <y:Geometry x="-666.5026178010469" y="58" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n13">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font refid="2"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>PostBallade</y:Text>
+            <y:PreferredSize width="69.65" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">13</data>
+      <data key="d7">
+        <y:Geometry x="1071.913451634729" y="-169.5" width="112" height="63"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <node id="G:n14">
+      <port name="p0"/>
+      <port name="p1"/>
+      <port name="p2"/>
+      <port name="p3"/>
+      <port name="p4"/>
+      <port name="p5"/>
+      <port name="p6"/>
+      <port name="p7"/>
+      <port name="p8"/>
+      <port name="p9"/>
+      <port name="p10"/>
+      <port name="p11"/>
+      <data key="d5">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font refid="2"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:InteriorLabelModel refid="16"/>
+            <y:Text>Pause</y:Text>
+            <y:PreferredSize width="37.3" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d6">14</data>
+      <data key="d7">
+        <y:Geometry x="1087.913451634729" y="56" width="80" height="40"/>
+      </data>
+      <data key="d4">
+        <EntityRelationshipNodeStyle type="EntityRelationship_Attribute" xmlns="http://www.yworks.com/xml/yed-flex/1.0">
+          <EntityRelationshipNodeStyle.fill>
+            <y:Brush refid="8"/>
+          </EntityRelationshipNodeStyle.fill>
+          <EntityRelationshipNodeStyle.stroke>
+            <y:LineType refid="7"/>
+          </EntityRelationshipNodeStyle.stroke>
+          <EntityRelationshipNodeStyle.textFormat>
+            <y:Font refid="13"/>
+          </EntityRelationshipNodeStyle.textFormat>
+        </EntityRelationshipNodeStyle>
+      </data>
+    </node>
+    <edge id="G:e0" source="G:n1" target="G:n2" sourceport="p0" targetport="p0">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="10"/>
+            <y:RotatingEdgeLabelModel ratio="0.5">
+              <y:ModelState angle="0" distance="-10" edgeRelativeDistance="false"/>
+            </y:RotatingEdgeLabelModel>
+            <y:Text>Detecte un autre identifiant / Thymio</y:Text>
+            <y:PreferredSize width="220.3" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">1</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle>
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e1" source="G:n6" target="G:n10" sourceport="p0" targetport="p0">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="1"/>
+            <y:SliderEdgeLabelModel index="0" ratio="0.5">
+              <y:ModelState refid="4"/>
+            </y:SliderEdgeLabelModel>
+            <y:Text>bouton central appuyé</y:Text>
+            <y:PreferredSize width="134.45" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">11</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="18"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="11"/>
+              <y:Brush refid="14"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e2" source="G:n10" target="G:n6" sourceport="p1" targetport="p1">
+      <data key="d15">12</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="18"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="11"/>
+              <y:Brush refid="14"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e3" source="G:n5" target="G:n7" sourceport="p0" targetport="p0">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="1"/>
+            <y:SliderEdgeLabelModel index="0" ratio="0.5">
+              <y:ModelState distance="0" angle="0" edgeRelativeDistance="false"/>
+            </y:SliderEdgeLabelModel>
+            <y:Text>bouton central appuyé</y:Text>
+            <y:PreferredSize width="134.45" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">13</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="18"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="11"/>
+              <y:Brush refid="14"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e4" source="G:n7" target="G:n5" sourceport="p1" targetport="p1">
+      <data key="d15">14</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="18"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="11"/>
+              <y:Brush refid="14"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e5" source="G:n3" target="G:n8" sourceport="p0" targetport="p0">
+      <data key="d15">15</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="18"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="11"/>
+              <y:Brush refid="14"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e6" source="G:n8" target="G:n3" sourceport="p1" targetport="p1">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="1"/>
+            <y:SliderEdgeLabelModel index="0" ratio="0.5">
+              <y:ModelState distance="0" angle="0" edgeRelativeDistance="false"/>
+            </y:SliderEdgeLabelModel>
+            <y:Text>bouton central appuyé</y:Text>
+            <y:PreferredSize width="134.45" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">16</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="18"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="11"/>
+              <y:Brush refid="14"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e7" source="G:n2" target="G:n9" sourceport="p1" targetport="p0">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="1"/>
+            <y:SliderEdgeLabelModel index="0" ratio="0.5">
+              <y:ModelState distance="0" angle="0" edgeRelativeDistance="false"/>
+            </y:SliderEdgeLabelModel>
+            <y:Text>bouton central appuyé</y:Text>
+            <y:PreferredSize width="134.45" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">17</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="18"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="11"/>
+              <y:Brush refid="14"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e8" source="G:n9" target="G:n2" sourceport="p1" targetport="p2">
+      <data key="d15">18</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e9" source="G:n4" target="G:n1" sourceport="p0" targetport="p1">
+      <data key="d15">19</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e10" source="G:n1" target="G:n11" sourceport="p2" targetport="p0">
+      <data key="d15">0</data>
+      <data key="d16">
+        <y:Path>
+          <y:Point x="-503.02844180515314" y="-213.05852793161193"/>
+        </y:Path>
+      </data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="3"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="5"/>
+              <y:Brush refid="12"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e11" source="G:n0" target="G:n11" sourceport="p0" targetport="p1">
+      <data key="d15">2</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="3"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="5"/>
+              <y:Brush refid="12"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e12" source="G:n11" target="G:n1" sourceport="p2" targetport="p3">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="10"/>
+            <y:RotatingEdgeLabelModel ratio="0.5">
+              <y:ModelState angle="0" distance="10" edgeRelativeDistance="false"/>
+            </y:RotatingEdgeLabelModel>
+            <y:Text>bouton avant appuyé</y:Text>
+            <y:PreferredSize width="126.1" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">3</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="3"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="5"/>
+              <y:Brush refid="12"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e13" source="G:n1" target="G:n4" sourceport="p4" targetport="p1">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:SliderEdgeLabelModel index="0" ratio="0.5">
+              <y:ModelState distance="0" angle="0" edgeRelativeDistance="false"/>
+            </y:SliderEdgeLabelModel>
+            <y:Text>bouton central appuyé</y:Text>
+            <y:PreferredSize width="134.45" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">4</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e14" source="G:n11" target="G:n12" sourceport="p3" targetport="p0">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle refid="10"/>
+            <y:SliderEdgeLabelModel index="0" ratio="0.5">
+              <y:ModelState distance="0" angle="0" edgeRelativeDistance="false"/>
+            </y:SliderEdgeLabelModel>
+            <y:Text>bouton central appuyé</y:Text>
+            <y:PreferredSize width="134.45" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">5</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen refid="3"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen refid="5"/>
+              <y:Brush refid="12"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e15" source="G:n12" target="G:n11" sourceport="p1" targetport="p4">
+      <data key="d15">6</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e16" source="G:n5" target="G:n11" sourceport="p2" targetport="p5">
+      <data key="d15">7</data>
+      <data key="d16">
+        <y:Path>
+          <y:Point x="-113.7959419761857" y="-449.46370099181144"/>
+          <y:Point x="-113.7959419761857" y="-449.46370099181144"/>
+        </y:Path>
+      </data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e17" source="G:n3" target="G:n11" sourceport="p2" targetport="p6">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:RotatingEdgeLabelModel ratio="0.8">
+              <y:ModelState angle="0" distance="10" edgeRelativeDistance="false"/>
+            </y:RotatingEdgeLabelModel>
+            <y:Text>flèche arrière appuyée (reset)</y:Text>
+            <y:PreferredSize width="172.8" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">8</data>
+      <data key="d16">
+        <y:Path>
+          <y:Point x="-275.55174479155824" y="-350.88138218742097"/>
+          <y:Point x="-275.55174479155824" y="-350.88138218742097"/>
+        </y:Path>
+      </data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e18" source="G:n2" target="G:n11" sourceport="p3" targetport="p7">
+      <data key="d15">9</data>
+      <data key="d16">
+        <y:Path>
+          <y:Point x="-396.7147657441326" y="-276.5283251081303"/>
+          <y:Point x="-396.7147657441326" y="-276.5283251081303"/>
+        </y:Path>
+      </data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e19" source="G:n6" target="G:n11" sourceport="p2" targetport="p8">
+      <data key="d15">10</data>
+      <data key="d16">
+        <y:Path>
+          <y:Point x="-11.47345595960968" y="-509.15536878598203"/>
+        </y:Path>
+      </data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e20" source="G:n13" target="G:n14" sourceport="p0" targetport="p0">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:SliderEdgeLabelModel index="0" ratio="0.5">
+              <y:ModelState distance="0" angle="0" edgeRelativeDistance="false"/>
+            </y:SliderEdgeLabelModel>
+            <y:Text>bouton central appuyé</y:Text>
+            <y:PreferredSize width="134.45" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">20</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e21" source="G:n14" target="G:n13" sourceport="p1" targetport="p1">
+      <data key="d15">21</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e22" source="G:n6" target="G:n13" sourceport="p3" targetport="p2">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:RotatingEdgeLabelModel ratio="0.5">
+              <y:ModelState angle="0" distance="-10" edgeRelativeDistance="false"/>
+            </y:RotatingEdgeLabelModel>
+            <y:Text>Fin de l'activité</y:Text>
+            <y:PreferredSize width="90.55" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">22</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e23" source="G:n13" target="G:n11" sourceport="p3" targetport="p9">
+      <data key="d15">23</data>
+      <data key="d16">
+        <y:Path>
+          <y:Point x="89.94958483506207" y="-572.3131613871786"/>
+        </y:Path>
+      </data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e24" source="G:n13" target="G:n1" sourceport="p4" targetport="p5">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:RotatingEdgeLabelModel ratio="0.5">
+              <y:ModelState angle="0" distance="-10" edgeRelativeDistance="false"/>
+            </y:RotatingEdgeLabelModel>
+            <y:Text>Delai de 10seconde pour séparé les thymio</y:Text>
+            <y:PreferredSize width="254.25" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">24</data>
+      <data key="d16">
+        <y:Path>
+          <y:Point x="1271.3294768515457" y="-25.203469476103123"/>
+          <y:Point x="1271.3294768515457" y="178.48949263895315"/>
+          <y:Point x="692.0581081461819" y="178.48949263895315"/>
+          <y:Point x="-90.57522294813782" y="178.48949263895315"/>
+        </y:Path>
+      </data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e25" source="G:n5" target="G:n6" sourceport="p3" targetport="p4">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:RotatingEdgeLabelModel ratio="0.5">
+              <y:ModelState angle="0" distance="-10" edgeRelativeDistance="false"/>
+            </y:RotatingEdgeLabelModel>
+            <y:Text>accepte la proposition d'activité</y:Text>
+            <y:PreferredSize width="187.9" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">25</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e26" source="G:n3" target="G:n5" sourceport="p3" targetport="p4">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:RotatingEdgeLabelModel ratio="0.5">
+              <y:ModelState angle="0" distance="-10" edgeRelativeDistance="false"/>
+            </y:RotatingEdgeLabelModel>
+            <y:Text>Proposition d'activité</y:Text>
+            <y:PreferredSize width="125.25" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">26</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e27" source="G:n2" target="G:n3" sourceport="p4" targetport="p4">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:RotatingEdgeLabelModel ratio="0.5">
+              <y:ModelState angle="0" distance="-10" edgeRelativeDistance="false"/>
+            </y:RotatingEdgeLabelModel>
+            <y:Text>Langue commune determinée</y:Text>
+            <y:PreferredSize width="176.1" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">27</data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="G:e28" source="G:n5" target="G:n1" sourceport="p5" targetport="p6">
+      <data key="d14">
+        <y:Labels>
+          <y:Label>
+            <y:ISimpleLabelStyle clipText="true" autoFlip="true">
+              <y:Font family="Dialog" points="12" style="Regular" color="#000000"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:ISimpleLabelStyle>
+            <y:RotatingEdgeLabelModel ratio="0.5">
+              <y:ModelState angle="0" distance="10" edgeRelativeDistance="false"/>
+            </y:RotatingEdgeLabelModel>
+            <y:Text>Si refuse la proposition d'activité</y:Text>
+            <y:PreferredSize width="193.3" height="15.95"/>
+          </y:Label>
+        </y:Labels>
+      </data>
+      <data key="d15">28</data>
+      <data key="d16">
+        <y:Path>
+          <y:Point x="-52.25621165957807" y="-329.06763385065835"/>
+        </y:Path>
+      </data>
+      <data key="d13">
+        <y:IPolylineEdgeStyle smoothing="50">
+          <y:Pen name="SolidColor" color="Black" width="1"/>
+          <y:TargetArrow>
+            <y:DefaultArrow type="Spearhead" cropLength="0" scale="1">
+              <y:Pen name="SolidColor" color="Black" width="1"/>
+              <y:Brush name="SolidBrush" color="Black"/>
+            </y:DefaultArrow>
+          </y:TargetArrow>
+        </y:IPolylineEdgeStyle>
+      </data>
+    </edge>
+  </graph>
+  <data key="d21">
+    <y:Resources/>
+  </data>
+</graphml>
