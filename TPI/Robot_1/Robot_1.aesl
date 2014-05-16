@@ -12,14 +12,14 @@
 <constant value="150" name="MOTOR"/>
 <constant value="100" name="TIMER0"/>
 <constant value="1000" name="TIMER1"/>
-<constant value="0" name="INITIALISE"/>
+<constant value="0" name="INITIALISATION"/>
 <constant value="1" name="BALLADE"/>
 <constant value="2" name="LANGUE"/>
 <constant value="3" name="EMOTIONS"/>
 <constant value="4" name="ACTIVITE"/>
 <constant value="5" name="CATCHME"/>
 <constant value="6" name="DANCE"/>
-<constant value="7" name="POSTBALLADE"/>
+<constant value="7" name="PREBALLADE"/>
 <constant value="9" name="PAUSE"/>
 <constant value="1" name="TRUE"/>
 <constant value="0" name="FALSE"/>
@@ -38,8 +38,12 @@
 # Projet par N.Mojon ETML
 
 # declaration des constante
+# PROXHORIZONTALE = indique la valeur a laquel les capteurs horizontale détacte un obstacle
+# MOTOR = Vitesse des roues
 # TIMER0 = Vitesse du timer 0
 # TIMER1 = Vitesse du timer 1
+# INITIALISATION = Etat appellant la methode initialisation et permettant de reinitialisé toute les variables
+# BALLADE = Etat 
 
 var Son = 0 # Delai pour la transmission des couleurs.
 var Lumiere = 0 # Variable pour savoir si les lampes sont allumées ou non.
@@ -65,8 +69,9 @@ var DelaiTransmission = 0
 var DelaiRep = 0
 var DelaiAct = 0
 var Parle = FALSE
-var PostBallade = 0
+var PreBallade = 0
 var Rencontre = 0
+var TempsCatchMe = 0
 call sound.system(-1)
 call prox.comm.enable(1)
 call leds.top (0,0,0)
@@ -79,8 +84,6 @@ timer.period[1] = 0
 
 sub Initialisation
 
-Son = 0
-Lumiere = 0
 prox.comm.rx = 0
 prox.comm.tx = 0
 motor.left.target = 0
@@ -105,18 +108,17 @@ Initiateur = 0
 DelaiTransmission = 0
 DelaiRep = 0
 DelaiAct = 0
-call leds.top (0,0,0)
 Parle = FALSE
-PostBallade = 0
-Rencontre = 0
+PreBallade = 0
+TempsCatchMe = 0
+call leds.top (0,0,0)
 call leds.circle (0,0,0,0,0,0,0,0)
+timer.period[1] = 0
 
 ################################################
 
 sub Ballade # mode ballade
 
-	timer.period[1] = 0
-	PostBallade = 0
 	prox.comm.tx = Identifiant
 
 	while  prox.horizontal[4] > PROXHORIZONTALE or prox.horizontal[3] > PROXHORIZONTALE or prox.horizontal[2] > PROXHORIZONTALE do
@@ -172,18 +174,6 @@ while LangueParleeBinaire[i] == LangueRecueBinaire[i] do
 	i++
 end
 
-when ChoixLangue == 0 do #son fr
-#	call sound.play(1)
-end
-
-when ChoixLangue == 1 do # son all
-#	call sound.play(3)
-end
-
-when ChoixLangue == 2 do # son angs
-#	call sound.play(2)
-end
-
 Etat = 3
 ################################################
 
@@ -191,8 +181,10 @@ sub Langue
 
 LangueRecue = prox.comm.rx
 
-#call sound.play(2)
-
+	if  Son == 1 then
+		call sound.play(3) #bjr
+	end
+	
 callsub BinaireLangue
 callsub ChoixLangue
 
@@ -222,11 +214,11 @@ Reponse = Reponse%3
 
 ################################################
 
-sub PostBallade
+sub PreBallade
 
 timer.period[1] = TIMER1
 
-while PostBallade != 10  do
+while PreBallade != 200  do
 	while  prox.horizontal[4] > PROXHORIZONTALE or prox.horizontal[3] > PROXHORIZONTALE or prox.horizontal[2] > PROXHORIZONTALE do
 		motor.left.target = -MOTOR
 		motor.right.target = MOTOR
@@ -241,31 +233,41 @@ while PostBallade != 10  do
 		motor.left.target = MOTOR
 		motor.right.target = MOTOR
 	end
+	PreBallade++
 end
 
-if  PostBallade == 10 then
-	Etat = 1
+if  PreBallade == 200 then
+	Etat = 0
 	Rencontre++
 	call leds.top(0,0,0)
 end
 	
+
 ################################################
 
 sub Emotions
 
-if  Parle == FALSE then
-	#call sound.play(1) #bjr
-prox.comm.tx = 1
-call leds.top(32,32,32) # blanc
-Parle = TRUE
-end
+#if  Parle == FALSE then
+#	if  Son == 1 then
+#		call sound.play(1) #bjr
+#	end
+#	prox.comm.tx = 1
+#	if  Lumiere == 1 then
+#		call leds.top(32,32,32) # blanc
+#	end
+#	Parle = TRUE
+#end
 
 if  DelaiTransmission > 20 then
 	
 	when Etat == 3 and prox.comm.rx == 1 do
-#		call sound.play(1) #bjr
+		if  Son == 1 then
+			call sound.play(1) #bjr
+		end
 		prox.comm.tx = 2
-		call leds.top(32,32,32) # blanc
+		if  Lumiere == 1 then
+			call leds.top(32,32,32) # blanc
+		end
 	end
 	
 	if DelaiTransmission > 40 then
@@ -274,12 +276,18 @@ if  DelaiTransmission > 20 then
 			Initiateur = TRUE
 			callsub ChoixActivité
 			if NActivite == 1 then
-#				call sound.play(7) # Chat ?
+				if  Son == 1 then
+					call sound.play(7) #Catch
+				end
 			else
-#				call sound.play(8) # Dance ?
+				if  Son == 1 then
+					call sound.play(8) #Dance
+				end			
 			end
 			prox.comm.tx = 3
-			call leds.top(0,0,32) # bleu
+			if  Lumiere == 1 then
+				call leds.top(0,0,32) # bleu
+			end
 		end
 				
 		if  DelaiTransmission > 60 then
@@ -288,20 +296,37 @@ if  DelaiTransmission > 20 then
 					callsub RepActivite
 					
 					if Reponse == 0  then
-#						call sound.play(4) # OK
+						if  Son == 1 then
+							call sound.play(4) # OK
+						end 
 						Etat = 4
 						prox.comm.tx = 5
-						call leds.top(0,32,0)#vert
+						if  Lumiere == 1 then
+							call leds.top(0,32,0)#vert
+						end
 					elseif Reponse == 1 then
-#						call sound.play(5) # N/A
+						if  Son == 1 then
+							call sound.play(5)# N/A
+						end 
 						prox.comm.tx = 2
-						call leds.top(32,32,0) #jaune
+						if  Lumiere == 1 then
+							call leds.top(32,32,0) #jaune
+						end
 					elseif Reponse == 2 then
-#						call sound.play(6) # NO
+						if  Son == 1 then
+							call sound.play(1) #NO
+						end
 						Etat = 7
-						call leds.top(32,0,0) #rouge
+						if  Lumiere == 1 then
+							call leds.top(32,0,0) #rouge
+						end
 						prox.comm.tx = 6
-#						call sound.play(10) # Aureveoir
+						if  Son == 1 then
+							call sound.play(6) #Aurevoir
+						end
+						if  Lumiere == 1 then
+							call leds.top(32,0,32) #violet
+						end
 					end
 				end
 			DelaiRep = 0
@@ -311,13 +336,17 @@ if  DelaiTransmission > 20 then
 			when prox.comm.rx == 6 and Etat == 3 do
 				Etat = 7
 				prox.comm.tx = 0
-				call leds.top(0,32,32) #violet
+				if  Lumiere == 1 then
+					call leds.top(32,0,32) #violet
+				end
 			end
 			
 			when prox.comm.rx == 5 and Etat == 3 do
 				Etat = 4
 				prox.comm.tx = NActivite
-				call leds.top(32,0,32) #violet
+				if  Lumiere == 1 then
+					call leds.top(32,0,32) #violet
+				end
 			end
 		end
 	end
@@ -326,11 +355,14 @@ end
 DelaiTransmission++
 DelaiRep++
 
+
+
 ################################################
 
 sub CatchMe
 
 VitesseBase=MOTOR
+prox.comm.tx = 0
 
 max = prox.horizontal[0]
 	mi = 0
@@ -374,6 +406,11 @@ max = prox.horizontal[0]
 		motor.left.target = speed_l - DifferenceVitesse
 	 end
 
+	 TempsCatchMe++
+	 
+	 if TempsCatchMe == 250 then
+	 	Etat = 7
+	 end
 ################################################
 
 sub Dance
@@ -462,7 +499,7 @@ when  button.right == 1 do
 		Son = FALSE
 	else 
 		Son = TRUE
-#		call sound.system(2)
+		call sound.system(2)
 	end
 end
 
@@ -470,7 +507,7 @@ end
 
 onevent timer0
 
-if  Etat == INITIALISE then
+if  Etat == INITIALISATION then
 	callsub Initialisation
 	Etat = 1
 elseif Etat == BALLADE then
@@ -485,13 +522,9 @@ elseif  Etat == CATCHME then
 	callsub CatchMe
 elseif  Etat == DANCE then
 	callsub Dance
-elseif  Etat == POSTBALLADE then
-	callsub PostBallade
-end 
-
-onevent timer1
-
-PostBallade++</node>
+elseif  Etat == PREBALLADE then
+	callsub PreBallade
+end </node>
 
 
 </network>
