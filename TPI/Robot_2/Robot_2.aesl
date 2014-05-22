@@ -23,9 +23,9 @@
 <constant value="9" name="PAUSE"/>
 <constant value="1" name="TRUE"/>
 <constant value="0" name="FALSE"/>
-<constant value="0" name="FRANCAIS"/>
-<constant value="1" name="ALLEMAND"/>
-<constant value="2" name="ANGLAIS"/>
+<constant value="1" name="FRANCAIS"/>
+<constant value="2" name="ALLEMAND"/>
+<constant value="4" name="ANGLAIS"/>
 <constant value="500" name="DETECT"/>
 
 
@@ -101,6 +101,7 @@ var PremiereParole = 0
 var Dance
 var NbDance = 0
 var NbRencontre = 0
+var ReponseAct = 0
 call sound.system(-1)
 call prox.comm.enable(1)
 call leds.top (0,0,0)
@@ -144,6 +145,7 @@ NbDance = 0
 DemiTour = FALSE
 TempsDemiTour = 0
 ActiviteDecide = 0
+ReponseAct = 0
 call leds.top (0,0,0)
 call leds.circle (0,0,0,0,0,0,0,0)
 timer.period[1] = 0
@@ -185,7 +187,7 @@ sub Ballade # mode ballade
 	
 	if  prox.comm.rx != 0  
 	and prox.horizontal[2] >= 2000 then
-		prox.comm.tx = 3
+		prox.comm.tx = FRANCAIS + ANGLAIS
 		motor.left.target = 0
 		motor.right.target = 0
 		Etat = 2
@@ -200,7 +202,9 @@ i = 0
 while LangueRecue != 0 do
 	LangueRecueBinaire[i] = LangueRecue%2
 	LangueRecue = LangueRecue/2
+	if i != 2 then
 	i++
+	end
 end
 
 ################################################
@@ -211,9 +215,8 @@ i = 0
 
 while LangueParleeBinaire[i] == LangueRecueBinaire[i] do
 	ChoixLangue = i
+	if i != 2 then
 	i++
-	if  i == 2 then
-		return
 	end
 end
 
@@ -230,6 +233,8 @@ LangueRecue = prox.comm.rx
 	
 callsub BinaireLangue
 callsub ChoixLangue
+
+prox.comm.tx = 0
 
 ################################################
 
@@ -299,25 +304,25 @@ if  PremiereParole &lt; 0 then
 	PremiereParole = -PremiereParole
 end
 
-PremiereParole = PremiereParole%6
+PremiereParole = PremiereParole%51
 
 ################################################
 
 sub Emotions
 
 #mettre selection de la 1ère parole
+when Parle == FALSE do
+	callsub DelaiParole
+end
 
-if  Parle == FALSE then
+if  Parle == FALSE and PremiereParole == 0 and prox.comm.rx == 0 then
 	if  Son == TRUE then
 		call sound.play(1) #bjr
 	end
 	if  Lumiere == TRUE then
-		call leds.top(32,32,32) # blanc
+		call leds.top(16,16,16) # blanc
 	end
-	callsub DelaiParole
-	if PremiereParole == 0 then
-		prox.comm.tx = 1
-	end
+	prox.comm.tx = 1
 	Parle = TRUE
 end
 
@@ -331,6 +336,7 @@ if  DelaiTransmission > 20 then
 		if  Lumiere == TRUE then
 			call leds.top(32,32,32) # blanc
 		end
+		Parle = TRUE
 	end
 	
 	if DelaiTransmission > 40 then
@@ -340,6 +346,7 @@ if  DelaiTransmission > 20 then
 		and ActiviteDecide == FALSE then
 			Initiateur = TRUE
 			callsub ChoixActivité
+#			NActivite = 0 # Valeur pour test
 			if NActivite == 1 then
 				if  Son == TRUE then
 					call sound.play(7) #Catch
@@ -371,9 +378,11 @@ if  DelaiTransmission > 20 then
 				
 		if  DelaiTransmission > 60 then
 			if  DelaiRep > 20 then
-				if  Etat == 3 and prox.comm.rx == 3 then
+				if  Etat == 3 
+				and prox.comm.rx == 3 
+				and ReponseAct == FALSE	then
 					callsub RepActivite
-					
+#					Reponse = 0	#Valeur pour test
 					if Reponse == 0  then
 						if  Son == TRUE then
 							call sound.play(4) # OK
@@ -383,6 +392,7 @@ if  DelaiTransmission > 20 then
 						if  Lumiere == TRUE then
 							call leds.top(0,32,0)#vert
 						end
+						ReponseAct = TRUE
 					elseif Reponse == 1 then
 						if  Son == TRUE then
 							call sound.play(5)# N/A
@@ -397,6 +407,7 @@ if  DelaiTransmission > 20 then
 							call sound.play(1) #NO
 						end
 						Etat = 7
+						ReponseAct = TRUE
 						if  Lumiere == TRUE then
 							call leds.top(32,0,0) #rouge
 						end
@@ -407,9 +418,7 @@ if  DelaiTransmission > 20 then
 					end
 				end
 			DelaiRep = 0
-			end
-			
-			
+			end			
 			if  prox.comm.rx == 6 and Etat == 3 then
 				Etat = 7
 				prox.comm.tx = 0
@@ -421,7 +430,6 @@ if  DelaiTransmission > 20 then
 			if  prox.comm.rx == 5 and Etat == 3 then
 				Etat = 4
 				prox.comm.tx = NActivite
-				emit rx(Etat)
 				if  Lumiere == TRUE then
 					call leds.top(32,0,32) #violet
 				end
@@ -432,8 +440,9 @@ end
 
 DelaiTransmission++
 DelaiRep++
-
-
+if  PremiereParole > 0 then
+	PremiereParole--
+end
 
 ################################################
 
@@ -496,6 +505,9 @@ sub Dance
 
 call leds.top(0,0,0)
 call leds.circle(8,8,8,8,8,8,8,8)
+if  Son == 1 then
+	call sound.play(11)
+end
 
 when Dance &lt; 20 do
 	motor.left.target = MOTOR
@@ -503,10 +515,6 @@ when Dance &lt; 20 do
 	if  Lumiere == 1 then
 		call leds.top(32,32,0)
 	end
-	if  Son == 1 then
-		call sound.system(3)
-	end
-
 end
 
 when Dance > 20 and Dance &lt; 40 do
@@ -515,10 +523,6 @@ when Dance > 20 and Dance &lt; 40 do
 	if  Lumiere == 1 then
 		call leds.top(0,32,32)
 	end
-	if  Son == 1 then
-		call sound.system(3)
-	end
-	
 end
 	
 if  Dance == 40 then
@@ -526,7 +530,7 @@ if  Dance == 40 then
 	NbDance++
 end
 
-if  NbDance == 5 then
+if  NbDance == 10 then
 	Etat = 7
 end
 
@@ -642,8 +646,7 @@ end
 
 onevent timer1
 
-PostBallade++
-PremiereParole--</node>
+PostBallade++</node>
 
 
 </network>
