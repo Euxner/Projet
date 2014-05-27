@@ -1,0 +1,682 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+<event size="1" name="rx"/>
+<event size="1" name="tx"/>
+
+
+<!--list of constants-->
+<constant value="2500" name="PROXHORIZONTALE"/>
+<constant value="150" name="MOTOR"/>
+<constant value="100" name="TIMER0"/>
+<constant value="1000" name="TIMER1"/>
+<constant value="0" name="INITIALISATION"/>
+<constant value="1" name="BALLADE"/>
+<constant value="2" name="LANGUE"/>
+<constant value="3" name="EMOTIONS"/>
+<constant value="4" name="ACTIVITE"/>
+<constant value="5" name="CATCHME"/>
+<constant value="6" name="DANCE"/>
+<constant value="7" name="POSTBALLADE"/>
+<constant value="9" name="PAUSE"/>
+<constant value="1" name="TRUE"/>
+<constant value="0" name="FALSE"/>
+<constant value="1" name="FRANCAIS"/>
+<constant value="2" name="ALLEMAND"/>
+<constant value="4" name="ANGLAIS"/>
+<constant value="500" name="DETECT"/>
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II"># Thymio II : Dialogue robotique avec le robot Thymio II
+# Projet par N.Mojon ETML
+
+# Declaration des constante
+
+# PROXHORIZONTALE = indique la valeur a laquel les capteurs horizontale détacte un obstacle
+
+# MOTOR = Vitesse des roues
+
+# TIMER0 = Vitesse du timer 0
+
+# TIMER1 = Vitesse du timer 1
+
+# INITIALISATION = Etat appellant la methode initialisation et permettant de reinitialisé toute les variables
+
+# BALLADE = Etat appalant la methode de ballade qui permet au robot de se déplacé indépendament en évitant les obstacles
+
+# LANGUE = Etat appellant la methode langue qui permet lors de la communication entre deux robots de choisir la langue commune qui sera la langue de discussion
+
+# EMOTIONS = Etat appellant la methode émotion, qui permet la discussion a proprement parlé des deux robots.
+# ACTIVITE = Etat appellant la methode activité permettant d'effectué une des deux activité a Choix
+
+# CATCHME = Etat lancant la première activité possible, celle qui permet a un robots de suivre l'autre.
+
+# DANCE = Etat permettant de lancé la deuxième activitée qui consiste a faire une danse commune avec une musique syncronisée
+
+# POSTBALLADE = methode permettant après avoir fini une activité, de séparer les thymio pour éviter la reconnection instantanée
+
+# TRUE &amp; FALSE = Variable bolléen crée a la main
+
+# FRANCAIS ALLEMAND ANGLAIS = variable pour le choix des Langue
+
+# DETECT = variable de detection de proximité pour les 2 robots lors de l'activité CatchMe
+
+var Son = FALSE # Delai pour la transmission des couleurs.
+var Lumiere = FALSE # Variable pour savoir si les lampes sont allumées ou non.
+var Identifiant = 2 # Identifiant du robots
+var Etat = 0 # variable de gestion des états du robots
+var EtatPause = -1 # variable de pause
+var LangueRecue = 0 # variable représentant les langue recue par le thymio lors que un autre thymio cherche a établir le contact.
+var i = 0 # Variable de boucle
+var LangueRecueBinaire[3] # transformation en binaire de la variable langue recue pour pouvoir la traiter.
+var LangueParleeBinaire[3] = [1,0,1] # Langue parlée par le thymio
+var ChoixLangue = 0 # Variable mémoire représentant la dernière langue parlée. Si elle est égal a 0 la dernière langue était le francais, 1 = l'allemand et 2 = l'anglais
+var DifferenceVitesse = 0 
+var VitesseBase=150 # vitesse de base du robot.
+var speed_l=0
+var max = 0 # determine a quel proximité est l'objet le plus proche 
+var mi = 0 # variable permettant de savoir quel capteur indique la proximité maximum
+var t = 0
+var NActivite = 0 # variable permettant de choisir une activité si elle est égale a 0 cela sera la dance sinon c'est le catchme
+var ActiviteDecide = 0 # variable permettant de savoir si l'activité a été choisie pour éviter les éventuelle boucles
+var Reponse = 0 #variable permettant de savoir quel réponse le thymio donnera a la proposition d'activité
+var Initiateur = 0 # variable permettant de savoir si le robot a proposé l'activité ou si il est le suiveur
+var DelaiTransmission = 0 # Delai permettant d'être sur que les transmission locale on put se faire (changement de la variable prox.comm.rx) et variable permettant le décalage des sons
+var DelaiRep = 0 # même utilité que la variable DelaiTransmission mais specialement affectée pour laissé un petit temps de blanc en cas de réponse hésitante
+var DelaiAct = 0 # petit delai pour etre sur que la valeur prox.comm.rx represente bien l'activité a effectuer et que les deux robots vont bien effectué la même activitée
+var Parle = FALSE # Permet de savoir si le robot est le premier a parler ou non
+var PostBallade = 0 # Delai de séparation des deux robots pour éviter que ces dernier reprenne une communication juste après l'avoir coupée
+var Rencontre = 0 # Variable mémoire représantant le nombre de Rencontre depuis l'initialisation.
+var DemiTour = 0 # Variable permettant au robots de se dàcalé lors de la reinisialisation
+var TempsCatchMe = 0 # delai pour le temps d'activation de catch me. Une fois ce delai passé, l'activité s'arrête
+var TempsDemiTour = 0 # delai pour le demi tour après la reinitialisation
+var PremiereParole = 0 # variable aléatoire permettant d'agir comme un delai et de faire qu'un des deux robots parle en premier
+var Dance # Variable de delai lors de la dance 
+var NbDance = 0 # variable permettant de savoir combien de fois la boucle de dance a été effectuée
+var ReponseAct = 0 # variable permettant que une seul réponse soit choisie lors de la proposition d'activité sauf si le robot hesite
+var CatchBallade = FALSE # variable permettant de savoir si l'état ballade a été activé par une utilisation courante ou l'activité catchme
+var DelaiCatchBallade = 0 # Delai pour desactivé le mode ballade lorsque l'activité catchme est finie
+var Aurevoir = FALSE
+var BonjoursDeux = FALSE
+var Musique = FALSE
+call sound.system(-1) # permet de desactivé les sons système de base
+call prox.comm.enable(1) # permet d'activé la communication locale
+call leds.top (0,0,0) # éteint les leds du haut du robot
+call leds.circle (0,0,0,0,0,0,0,0) # éteint le cercle de leds
+timer.period[0] = 0 # Valeur de base du premier timer
+timer.period[1] = 0 # Valeur de base du deuxième timer
+
+
+###############################################
+
+sub Initialisation # Mèthode permettant de reinisialisé l'ensemble des variables permettant au programme de fonctionné. Permet de relancé le programme en cas de bug et de réetablir une communication lorsque une autre viens de se terminé
+
+prox.comm.rx = 0
+prox.comm.tx = 0
+motor.left.target = 0
+motor.right.target = 0
+Etat = 0
+EtatPause = -1
+LangueRecue = 0
+i = 0
+LangueRecueBinaire = [0,0,0]
+ChoixLangue = 0
+DifferenceVitesse = 0
+VitesseBase=0
+speed_l=0
+max = 0
+mi = 0
+t = 0
+NActivite = 0
+Reponse = 0
+Initiateur = 0
+DelaiTransmission = 0
+DelaiRep = 0
+DelaiAct = 0
+Parle = FALSE
+PostBallade = 0
+TempsCatchMe = 0
+PremiereParole = 0
+Dance = 0
+NbDance = 0
+DemiTour = FALSE
+TempsDemiTour = 0
+ActiviteDecide = 0
+ReponseAct = 0
+CatchBallade = FALSE
+DelaiCatchBallade = 0
+Aurevoir = FALSE
+BonjoursDeux = FALSE
+Musique = FALSE
+call leds.top (0,0,0)
+if  Lumiere == TRUE then
+	call leds.circle (32,0,0,0,0,0,0,0)
+else
+	call leds.circle (0,0,0,0,0,0,0,0)
+end
+timer.period[1] = 0
+
+################################################
+
+sub Ballade # mode ballade permet au robot de se ballader aléatoirement en évitant les obstacles sur son chemin. Cette methode est activée lorsque le robot cherche une autre robot pour communiqué ainsi que lorsque l'activité catch me est lancé, l'initiateur entre dans ce mode. 
+
+	prox.comm.tx = Identifiant
+	
+	if DemiTour == TRUE and TempsDemiTour != 15 then
+		motor.right.target = MOTOR
+		motor.left.target = -MOTOR
+		TempsDemiTour++
+		if  TempsDemiTour == 15 then
+			DemiTour = FALSE
+		end
+	end
+
+	while  prox.horizontal[4] > PROXHORIZONTALE 
+	or prox.horizontal[3] > PROXHORIZONTALE 
+	or prox.horizontal[2] > PROXHORIZONTALE do
+		motor.left.target = -MOTOR
+		motor.right.target = MOTOR
+	end
+	
+	while  prox.horizontal[0] > PROXHORIZONTALE 
+	or prox.horizontal[2] > PROXHORIZONTALE do
+		motor.left.target = MOTOR
+		motor.right.target = -MOTOR
+	end
+	 
+	if prox.horizontal[2] == 0 
+	or prox.horizontal[0] == 0 
+	or prox.horizontal[4] == 0 then 
+		motor.left.target = MOTOR
+		motor.right.target = MOTOR
+	end
+	
+	if  prox.comm.rx != 0  
+	and prox.horizontal[2] >= 2000 then
+		prox.comm.tx = FRANCAIS + ANGLAIS
+		motor.left.target = 0
+		motor.right.target = 0
+		Etat = 2
+	end
+	
+	if  CatchBallade == TRUE then
+		DelaiCatchBallade++
+		if DelaiCatchBallade == 215 then
+			Etat = 7
+			CatchBallade = FALSE
+			prox.comm.tx = 0
+		end
+	end
+
+################################################
+
+sub BinaireLangue # permet de tansformer les langue qui ont été recue via la valeur prox.comm.rx en binaire
+
+i = 0
+
+while LangueRecue != 0 do
+	LangueRecueBinaire[i] = LangueRecue%2
+	LangueRecue = LangueRecue/2
+	if i != 2 then
+	i++
+	end
+end
+
+################################################
+
+sub ChoixLangue # permet de comparé les deux valeurs binaire des langues parleés et d'en determiné une commune
+
+i = 0
+
+while LangueParleeBinaire[i] == LangueRecueBinaire[i] and  LangueRecueBinaire[i] != 0 do
+	ChoixLangue = i
+	if i != 2 then
+	i++
+	end
+end
+
+Etat = 3
+################################################
+
+sub Langue # receptionne la valeur des langue recue et lance les divers methode nécessaire pour le choix de la langue de discussion
+
+LangueRecue = prox.comm.rx
+
+	if  Son == 1 then
+		call sound.play(3) #bjr
+	end
+	
+callsub BinaireLangue
+callsub ChoixLangue
+
+prox.comm.tx = 0
+
+################################################
+
+sub ChoixActivité # methode permettant de crée l'aléatoire qui gère le choix de l'activité a effectué
+
+call math.rand(NActivite)
+
+if  NActivite &lt; 0 then
+	NActivite = -NActivite
+end
+
+NActivite = NActivite%3
+
+################################################
+
+sub RepActivite # methode permettant de crée l'aléatoire qui gère le choix de la réponse a donnée lors de la proposition d'activité a effectué
+
+call math.rand(Reponse)
+
+if  Reponse &lt; 0 then
+	Reponse = -Reponse
+end
+
+Reponse = Reponse%3
+
+################################################
+
+sub PostBallade # presque copie de la methode ballade permettant un écartement des robots sans un recommunication instantanée
+
+timer.period[1] = TIMER1
+if  Son == 1 and Aurevoir == FALSE then
+	call sound.play(10)
+	Aurevoir = TRUE
+end
+
+while PostBallade != 5  do # tant que le timer n'es pas fini évite le obstacle
+	while  prox.horizontal[4] > PROXHORIZONTALE 
+	or prox.horizontal[3] > PROXHORIZONTALE 
+	or prox.horizontal[2] > PROXHORIZONTALE do
+		motor.left.target = -MOTOR
+		motor.right.target = MOTOR
+	end
+	
+	while  prox.horizontal[0] > PROXHORIZONTALE 
+	or prox.horizontal[2] > PROXHORIZONTALE do
+		motor.left.target = MOTOR
+		motor.right.target = -MOTOR
+	end
+	 
+	if prox.horizontal[2] == 0 then 
+		motor.left.target = MOTOR
+		motor.right.target = MOTOR
+	end
+	return
+end
+
+if  PostBallade == 5 then # Reinitialise avec l'état 0 le robot
+	call leds.top(0,0,0)
+	Etat = 0
+	Rencontre++
+	PostBallade = 0
+end
+	
+################################################
+
+sub DelaiParole # Methode permettant de crée la valeur aléatoire qui permettra de savoir qui parle en premier
+
+call math.rand(PremiereParole)
+
+if  PremiereParole &lt; 0 then
+	PremiereParole = -PremiereParole
+end
+
+PremiereParole = PremiereParole%51
+
+################################################
+
+sub Emotions # methode gérant toute les émotions du robot du projet,
+
+#mettre selection de la 1ère parole
+when Parle == FALSE do
+	callsub DelaiParole # crée un chiffre aléatoire
+end
+
+if  Parle == FALSE 
+and PremiereParole == 0 
+and prox.comm.rx == 0 then # lorsque l'aléatoire = 0 lance la discussion et envoie un signal a l'autre thymio que le il est le deuxième a parlé
+	if  Son == TRUE then
+		call sound.play(1) #bjr
+	end
+	if  Lumiere == TRUE then
+		call leds.top(16,16,16) # blanc
+	end
+	prox.comm.tx = 1
+	Parle = TRUE
+end
+
+if  DelaiTransmission > 20 then
+	
+	if  Etat == 3 
+	and prox.comm.rx == 1
+	and BonjoursDeux == FALSE then # permet la réponse au premier bonjours
+		if  Son == TRUE then
+			call sound.play(1) #bjr
+		end
+		prox.comm.tx = 2
+		if  Lumiere == TRUE then
+			call leds.top(32,32,32) # blanc
+		end
+		Parle = TRUE
+	end
+	
+	if DelaiTransmission > 40 then
+	
+		if  Etat == 3 
+		and prox.comm.rx == 2 
+		and ActiviteDecide == FALSE then # Determine quel activité va être proposée ainsi que qui est l'initiateur
+			Initiateur = TRUE
+			callsub ChoixActivité
+#			NActivite = 1 # Valeur pour test
+			if NActivite == 1 then
+				if  Son == TRUE then
+					call sound.play(7) #Catch
+				end
+				if  Lumiere == TRUE then
+					call leds.top(0,0,32) # bleu
+				end
+				prox.comm.tx = 3
+				ActiviteDecide = TRUE
+			elseif  NActivite == 0 then
+				if  Son == TRUE then
+					call sound.play(8) #Dance
+				end
+				if  Lumiere == TRUE then
+					call leds.top(0,0,32) # bleu
+				end
+				prox.comm.tx = 3
+				ActiviteDecide = TRUE
+			elseif NActivite == 2 then
+				if  Son == TRUE then
+					call sound.play(6)
+				end
+				if  Lumiere == TRUE then
+					call leds.top(32,32,0) # jaune
+				end	
+				DelaiTransmission = 0	
+			end
+		end
+				
+		if  DelaiTransmission > 60 then
+			if  DelaiRep > 20 then
+				if  Etat == 3 
+				and prox.comm.rx == 3 
+				and ReponseAct == FALSE then # determine la réponse du suiveur suite la proposition d'activité de l'Initiateur
+					callsub RepActivite
+#					Reponse = 0	#Valeur pour test
+					if Reponse == 0  then
+						if  Son == TRUE then
+							call sound.play(4) # OK
+						end 
+						Etat = 4
+						prox.comm.tx = 5
+						if  Lumiere == TRUE then
+							call leds.top(0,32,0)#vert
+						end		
+						ReponseAct = TRUE
+					elseif Reponse == 1 then
+						if  Son == TRUE then
+							call sound.play(5)# N/A
+						end 
+						prox.comm.tx = 2
+						ActiviteDecide = 0
+						if  Lumiere == TRUE then
+							call leds.top(32,32,0) #jaune
+						end
+					elseif Reponse == 2 then
+						if  Son == TRUE then
+							call sound.play(1) #NO
+						end
+						Etat = 7	
+						ReponseAct = TRUE
+						if  Lumiere == TRUE then
+							call leds.top(32,0,0) #rouge
+						end
+						prox.comm.tx = 6
+					end
+				end
+			DelaiRep = 0
+			end			
+			if  prox.comm.rx == 6 and Etat == 3 then # si le robot suiveur a refusé l'activité
+				Etat = 7
+				prox.comm.tx = 0
+				if  Lumiere == TRUE then
+					call leds.top(0,32,32) #cyan
+				end
+			end
+			
+			if  prox.comm.rx == 5 and Etat == 3 then # si le robot suiveur a accepté l'activité
+				Etat = 4
+				prox.comm.tx = NActivite
+				if  Lumiere == TRUE then
+					call leds.top(32,0,32) #violet
+				end
+			end
+		end
+	end
+end
+
+DelaiTransmission++
+DelaiRep++
+if  PremiereParole > 0 then
+	PremiereParole--
+end
+
+################################################
+
+sub CatchMe # activité follow me permettant a un robot de suivre l'autre (l'un effectue cette methode, l'autre la ballade avec la variable CatchBallade activé
+
+VitesseBase=MOTOR
+prox.comm.tx = 0
+
+max = prox.horizontal[0] 
+	mi = 0
+	speed_l=0
+	for i in 0:4 do 
+		if prox.horizontal[i]> max then
+			max = prox.horizontal[i]
+			mi = i
+		end
+	end
+	
+	t = 2 - mi
+	DifferenceVitesse = t * (VitesseBase / 2)
+	if max > 3500 then
+		speed_l = (3500 - max) / 2
+	end
+	if (max > 4000) then
+		speed_l = -VitesseBase 
+	end
+	if (max &lt; 3000) then
+		t = 300 - (max - 1000) / 7
+		speed_l = t
+	end
+	
+	if (max &lt; 2000) then
+		speed_l = VitesseBase 
+	end
+	
+	if(speed_l > VitesseBase) then
+		speed_l = VitesseBase
+	end
+	if(speed_l &lt; -VitesseBase) then
+		speed_l = -VitesseBase
+	end
+	
+	if(max &lt; DETECT) then
+		motor.left.target = 0
+		motor.right.target = 0
+	 else 
+		motor.right.target = DifferenceVitesse + speed_l
+		motor.left.target = speed_l - DifferenceVitesse
+	 end
+	 
+	 TempsCatchMe++
+	 
+	 if TempsCatchMe == 250 then
+	 	Etat = 7
+	 end
+
+################################################
+
+sub Dance # methode permettant au deux robots de dancer
+
+call leds.top(0,0,0)
+call leds.circle(8,8,8,8,8,8,8,8)
+if  Son == 1 and Musique == FALSE then
+	call sound.play(11)
+	Musique = TRUE
+end
+
+when Dance &lt; 20 do # boucle 1 permettant au robot de dancer
+	motor.left.target = MOTOR
+	motor.right.target = -MOTOR
+	if  Lumiere == 1 then
+		call leds.top(32,32,0)
+	end
+end
+
+when Dance > 20 and Dance &lt; 40 do  # boucle 2 permettant au robot de dancer
+	motor.left.target = -MOTOR
+	motor.right.target = MOTOR
+	if  Lumiere == 1 then
+		call leds.top(0,32,32)
+	end
+end
+	
+if  Dance == 40 then # permet de compter le nombre de round de dance que le robot a effectué
+	Dance = 0
+	NbDance++
+end
+
+if  NbDance == 10 then # permet la reinisialisation
+	Etat = 7
+end
+
+Dance++
+################################################
+
+sub Activite # methode permettant au deux robots en fonction de numero d'activité NActivite choisi d'effectué une action commune
+
+if Initiateur == 1 and DelaiAct > 50 then 
+	if  NActivite == 1 then
+		DemiTour = TRUE
+		CatchBallade = TRUE
+		callsub Ballade
+	else
+		Etat = 6
+	end
+elseif DelaiAct > 50  then
+	if  prox.comm.rx == 1 and Etat == 4 then
+		Etat = 5			
+	else 
+		Etat = 6
+	end
+end
+
+DelaiAct++
+
+################################################
+
+sub Pause #Mise en pause du robot
+	
+	if  EtatPause == -1 then
+		EtatPause = Etat
+	Etat = PAUSE
+		if  motor.left.target != 0 then
+		motor.left.target = 0
+		motor.right.target = 0
+		end
+	else
+		Etat = EtatPause
+		EtatPause = -1	
+	end
+################################################
+
+onevent button.forward #activation du mode ballade
+
+callsub Initialisation
+timer.period[0] = TIMER0
+
+################################################
+
+onevent button.backward #Reset complet du robots
+
+callsub Initialisation
+timer.period[0] = 0
+
+################################################
+
+onevent button.center #Active le mode pause
+
+if button.center == 1 then
+	callsub Pause
+end
+
+################################################
+
+onevent button.left # Active ou non les lumière
+
+when  button.left == 1 do
+
+	if  Lumiere == TRUE then
+		Lumiere = FALSE
+		call leds.circle(0,0,0,0,0,0,0,0)
+	else
+		Lumiere = TRUE
+		call leds.circle(32,0,0,0,0,0,0,0)
+	end
+end
+
+################################################
+
+onevent button.right # Active ou non les sons
+
+
+when  button.right == 1 do
+	if Son == TRUE then
+		Son = FALSE
+	else 
+		Son = TRUE
+		call sound.system(2)
+	end
+end
+
+################################################
+
+onevent timer0
+
+if  Etat == INITIALISATION then
+	callsub Initialisation
+	Etat = 1
+elseif Etat == BALLADE then
+	callsub Ballade
+elseif Etat == LANGUE then
+	callsub Langue
+elseif Etat == EMOTIONS then
+	callsub Emotions
+elseif Etat == ACTIVITE then
+	callsub Activite
+elseif  Etat == CATCHME then
+	callsub CatchMe
+elseif  Etat == DANCE then
+	callsub Dance
+elseif  Etat == POSTBALLADE then
+	callsub PostBallade
+end
+
+onevent timer1
+
+PostBallade++</node>
+
+
+</network>

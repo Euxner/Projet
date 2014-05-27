@@ -1,0 +1,101 @@
+Date;Demande;Heures;Commentaire
+28.05.2014;#57: Imprévu et réserves et tâches administratives;2,50;Impression et redidion du TPI
+27.05.2014;#36: Rapport;2,00;Dernière relecture du dossier
+27.05.2014;#38: Mode d'emploi;1,00;Relecture et correction
+27.05.2014;#36: Rapport;3,00;Relecture et correction
+27.05.2014;#36: Rapport;3,00;Fin de l'écriture de la documentation
+27.05.2014;#36: Rapport;1,75;Ecriture de la partie realisation
+27.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+27.05.2014;#37: Wiki;1,00;Mise en place du wiki en fonction du guide d'utilisation papier
+26.05.2014;#36: Rapport;3,00;Correction orthographique du rapport (effectuer chez sois)
+26.05.2014;#71: Contrôle et tests;1,50;Test finaux du projet (effectuer chez sois)
+26.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+26.05.2014;#38: Mode d'emploi;2,00;Mode d'emploi écris, nécessite encore des corrections
+26.05.2014;#36: Rapport;1,00;Correction diverse
+26.05.2014;#36: Rapport;3,50;Revision des partie analyse du Cdc ainsi que des problèmes rencontré
+25.05.2014;#36: Rapport;5,00;Ecriture de diverse partie du rapport ainsi que correction
+23.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+23.05.2014;#36: Rapport;3,50;Ecriture de la partie réalisation
+23.05.2014;#36: Rapport;2,50;Diverse correction et début de la partie réalisation.
+23.05.2014;#97: Développement de la réinitialisation après discussion;1,00;Réinitialisation du robots en mode ballade de catch me
+22.05.2014;#36: Rapport;0,50;Correction de la partie historique du cahier des charges suites au modification apportée.
+22.05.2014;#71: Contrôle et tests;1,50;Divers test pour vérifier le fonctionnement générale ainsi que diverse correction
+22.05.2014;#57: Imprévu et réserves et tâches administratives;0,50;Présentation du projet en l'état a M.Melly
+22.05.2014;#57: Imprévu et réserves et tâches administratives;0,50;Discussion avec M.Melly relative aux heures effectuée
+22.05.2014;#52: Développement des emotions;1,50;Correction de diverse erreur
+22.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+22.05.2014;#52: Développement des emotions;1,50;Développement de qui parle en 1er et mise a jour de diverse erreurs
+21.05.2014;#52: Développement des emotions;1,50;Développement de qui parle en 1er et mise a jour de diverse erreurs
+21.05.2014;#99: Conception des emotions;0,50;Conception du choix de qui parle en 1er
+21.05.2014;#40: Journal de travail;0,25;Mise  a jour du journal de travail
+21.05.2014;#36: Rapport;3,00;Fin de l'écriture de la partie conception
+20.05.2014;#71: Contrôle et tests;1,00;Correction de divers bugs (reste certain a corrigé)
+20.05.2014;#96: Développement du code liant une couleur a une émotion;1,00;Développement du code permettant dans la partie émotion de lié une couleur a une émotion
+20.05.2014;#51: Développement des actions pouvant être effectuée;1,50;Essaye de synchronisation des deux robots
+20.05.2014;#55: Conception du code liant une couleur a une émotion;0,25;Conception du code qui permet de lié une émotion a une couleur.
+20.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+20.05.2014;#56:  Conception de la réinitialisation après discussion;0,25;conception du code permettant la réinitialisation après une communication
+20.05.2014;#97: Développement de la réinitialisation après discussion;1,50;Création du la methode de retour en mode ballade et correction de divers bug crée a cause de cette methode
+19.05.2014;#36: Rapport;2,00;Correction de certaine partie du rapport (effectuer hors de l'ETML)
+19.05.2014;#54: Conception de la mémoire;0,25;Conception sur la méthode mémoire
+19.05.2014;#95: Développement de la mémoire;1,00;Développement de la méthode mémoire
+19.05.2014;#51: Développement des actions pouvant être effectuée;1,00;Activité Dance
+19.05.2014;#71: Contrôle et tests;0,50;Test du projet
+16.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+16.05.2014;#36: Rapport;3,50;Diverse correection et suite de l'écriture du rapport
+16.05.2014;#36: Rapport;3,00;Suite de l'écriture de la partie conception principalement description des états
+15.05.2014;#34: Création du schéma d'état version 1.0;0,50;Révision du schéma d'état
+15.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+15.05.2014;#36: Rapport;1,75;Mise a jour de la partie Analyse detaillée
+15.05.2014;#36: Rapport;3,50;Rédaction de la partie conception du projet et reprise de certaine autre partie.
+14.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+14.05.2014;#52: Développement des emotions;1,50;Correction sur la fonction des émotions des erreur de transmission ou des boucles infinie
+14.05.2014;#51: Développement des actions pouvant être effectuée;1,00;Développement de la partie de choix de l?activité et du début de l?activée Dance
+14.05.2014;#52: Développement des emotions;0,50;Légère transformation du code des émotions
+14.05.2014;#71: Contrôle et tests;1,50;Contrôle et test des émotions
+13.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+13.05.2014;#52: Développement des emotions;2,00;Développement des émotions pour pouvoir coder correctement les activités (notion d'initiateur et autre)
+13.05.2014;#99: Conception des emotions;1,00;"Conception des émotions pour pouvoir ""développer"" correctement les activités"
+13.05.2014;#98: Conception des actions pouvant être effectuée;1,00;Conception de l'activité dance
+12.05.2014;#51: Développement des actions pouvant être effectuée;2,00;Récupération du comportement vert de base du thymio et adaptation de celui ci pour mon projet.
+12.05.2014;#98: Conception des actions pouvant être effectuée;1,00;Conception de l'activité catch me
+12.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+12.05.2014;"#94: Développement du système de reconnaissance des langues
+ et du choix de la langue de communication";0,50;Fin du développement de la fonction de choix des langues
+12.05.2014;#53: Création des sons;1,50;Création des sons grâce au logiciel acapela group
+09.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+09.05.2014;"#94: Développement du système de reconnaissance des langues
+ et du choix de la langue de communication";2,50;Développement du système de sélection de la langue
+09.05.2014;"#50: Conception du système de reconnaissance des langues
+ et du choix de la langue de communication";0,50;Conception du moyen de transmettre les langues
+09.05.2014;"#50: Conception du système de reconnaissance des langues
+ et du choix de la langue de communication";1,00;Conception du moyen de transmettre les langues
+09.05.2014;#89: Conception générale du projet;1,00;"Conception du système de base des émotions ainsi que
+ correction de petites erreurs sur la conception des activitées"
+09.05.2014;#53: Création des sons;0,75;"Recherche de logiciel de synthèse audio, d'un logiciel d'enregistrement. Le logiciel servira a enregistré 
+directement les sons de l'ordinateur qui sont crée a partir de la synthèse vocale. Test effectué avec un son format .wav 8000hz 8bits"
+08.05.2014;#89: Conception générale du projet;2,00;Conception générale du projet et principe a utilisé pour les diverses partie. (pseudo-code, schéma)
+08.05.2014;#36: Rapport;2,00;Début de l'écriture du la partie Analyse
+08.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+08.05.2014;#36: Rapport;1,00;Ecriture de la partie analyse préliminaire
+07.05.2014;#57: Imprévu et réserves et tâches administratives;1,50;Joutes sportives
+07.05.2014;#45: Analyse du CdC du projet;3,00;
+07.05.2014;#40: Journal de travail;0,25;Mise a jour du journal de travail
+06.05.2014;#92: Développement du mode Ballade;0,50;"Le robot est capable de se déplacé de manière autonome 
+et dans collision avec son environnement, mais il longera les murs."
+06.05.2014;#93: Développement du système d'identifiant;0,25;"Développement du système d'identifiant en passant par les IR et
+ la fonction prox.comm (si detection d'un prox.comm.rx => conversation lancée"
+06.05.2014;#83: Planification détaillée;2,00;"Mise au point de la plaification détaillée, prinicpalement, mise a jour de la planification
+ en fonction des remarques des experts"
+06.05.2014;#100: Développement des commandes de bases;0,50;Développement du bouton pause
+06.05.2014;#40: Journal de travail;0,50;Mise a jour du journal de travail
+06.05.2014;#49: Conception du système d'identifiant;0,25;Conception systeme d'identifiant pour pouvoir tester les etats
+06.05.2014;#42: Conception des commandes de bases;0,50;Etude pour la fonction pause et conception simple des autres boutons
+06.05.2014;;0,50;Mise en place de arborescence pour le TPI dans Github
+06.05.2014;#34: Création du schéma d'état version 1.0;1,00;Création du premier schéma d'état. Il est disponible via le git
+06.05.2014;#44: Conception du mode Ballade;0,50;Mise en place des bases du mode ballade / pour le moment le robot rase les murs
+06.05.2014;#100: Développement des commandes de bases;0,50;Mise en place des flèches, le bouton central n'est pas encore actif
+05.05.2014;#31: Planification Initiale;3,50;Mise en place de la planification initiale du projet
+05.05.2014;"#30: Reunion avec Expert et questions / réponse
+ avec l'expert et le répondant.";1,00;L'expert a présenté les aspects généraux du TPI et a répondu aux diverses questions
+05.05.2014;#29: Lecture et compréhension du cahier des charges.;2,50;Le cahier des charges a été lu avec attention. Certain point sont a éclaircir avec le chef de projet et/ou les experts

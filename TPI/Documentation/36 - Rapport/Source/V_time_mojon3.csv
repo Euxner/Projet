@@ -1,0 +1,33 @@
+29;Lecture et compréhension du cahier des charges.;2.5;2.5;1
+30;Reunion avec Expert et questions / réponse avec l'expert et le répondant.;1;1;1
+31;Planification Initiale;3.5;3.5;1
+34;Création du schéma d'état version 1.0;1;1.5;1.5
+36;Rapport;40;48.5;1.212
+37;Wiki;1.5;1;0.667
+38;Mode d'emploi;2;3;1.5
+40;Journal de travail;4;4;1
+42;Conception des commandes de bases;0.5;0.5;1
+44;Conception du mode Ballade;0.5;0.5;1
+45;Analyse du CdC du projet;6;3;0.5
+49;Conception du système d'identifiant;0.25;0.2;1
+50;Conception du système de reconnaissance des langues et du choix de la langue de communication;0.75;1.5;2
+51;Développement des actions pouvant être effectuée;12;5.5;0.458
+52;Développement des emotions;17;8.5;0.5
+53;Création des sons;2;2.2;1.125
+54;Conception de la mémoire;0.5;0.2;0.5
+55;Conception du code liant une couleur a une émotion;0.25;0.2;1
+56; Conception de la réinitialisation après discussion;0.25;0.2;1
+57;Imprévu et réserves et tâches administratives;5;5;1
+70;Mise a jour de la planification;1;0;0
+71;Contrôle et tests;3;6;2
+83;Planification détaillée;1.5;2;1.333
+89;Conception générale du projet;3;3;1
+92;Développement du mode Ballade;1.5;0.5;0.333
+93;Développement du système d'identifiant;0.25;0.2;1
+94;Développement du système de reconnaissance des langues et du choix de la langue de communication;2.25;3;1.333
+95;Développement de la mémoire;1.5;1;0.667
+96;Développement du code liant une couleur a une émotion;0.75;1;1.333
+97;Développement de la réinitialisation après discussion;0.75;2.5;3.333
+98;Conception des actions pouvant être effectuée;3;2;0.667
+99;Conception des emotions;3;1.5;0.5
+100;Développement des commandes de bases;1;1;1
